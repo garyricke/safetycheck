@@ -250,7 +250,7 @@
         <div class="nowplaying" id="np">Nothing playing</div>
       </div>
       <div class="vo-rows" id="vo-rows"></div>
-      <p class="muted vo-foot">Live reads recorded by <b>Gary Ricke</b>. Music bed “The Road Ahead” plays quietly (~12% volume) and loops. AI reads are the ElevenLabs trial used in the current first cut.</p>
+      <p class="muted vo-foot">Live reads recorded by <b>Gary Ricke</b>, loudness-matched to the AI reads (≈ −17 LUFS) for a fair comparison. Music bed “The Road Ahead” plays softly (~7% volume) and loops. AI reads are the ElevenLabs trial used in the current first cut.</p>
     </div>
   </section>
 
@@ -373,7 +373,7 @@
   if(!rows) return;
 
   var player=new Audio(); player.preload="none";
-  var bed=new Audio(CDN+"music-road-ahead.mp3"); bed.preload="none"; bed.loop=true; bed.volume=0.12;
+  var bed=new Audio(CDN+"music-road-ahead.mp3"); bed.preload="none"; bed.loop=true; bed.volume=0.07;
   var bedOn=false, activeBtn=null;
 
   function makeBtn(kind,url,label,sub){
@@ -391,7 +391,7 @@
     var title=document.createElement("div"); title.className="vtitle"; title.textContent=t;
     var btns=document.createElement("div"); btns.className="abtns";
     btns.appendChild(makeBtn("ai",CDN+"vo-ch"+n+".mp3","Ch "+n+" · AI voice",'AI voice'));
-    btns.appendChild(makeBtn("real",CDN+"vo-gary-ch"+n+".mp3","Ch "+n+" · Gary (live)",'Gary · live'));
+    btns.appendChild(makeBtn("real",CDN+"vo-gary-ch"+n+"-n.mp3","Ch "+n+" · Gary (live)",'Gary · live'));
     row.appendChild(idx); row.appendChild(title); row.appendChild(btns);
     rows.appendChild(row);
   });
