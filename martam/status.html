@@ -108,6 +108,34 @@
   footer{color:var(--muted);font-size:12.5px;text-align:center;padding:30px 0 50px}
   code.k{font-family:var(--mono);font-size:12.5px;background:#eef0f3;padding:1px 6px;border-radius:5px;color:var(--ink-soft)}
   .rev td{font-size:13px}
+
+  /* Voice-over A/B player */
+  .vo-controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0 6px;padding:12px 14px;background:#fafbfc;border:1px solid var(--line);border-radius:12px}
+  .bedbtn{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);font-family:var(--sans);font-size:13px;font-weight:600;padding:8px 13px;border-radius:999px;cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+  .bedbtn svg{width:16px;height:16px;color:var(--muted)}
+  .bedbtn[aria-pressed="true"]{border-color:var(--martam-red);color:var(--martam-red-dark);background:#fdeceb}
+  .bedbtn[aria-pressed="true"] svg{color:var(--martam-red)}
+  .nowplaying{font-size:12.5px;color:var(--muted);font-family:var(--mono)}
+  .nowplaying b{color:var(--ink);font-weight:700}
+  .vo-rows{margin-top:6px}
+  .vo-row{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;padding:11px 4px;border-bottom:1px solid var(--line)}
+  .vo-row:last-child{border-bottom:0}
+  .vo-row .vidx{font-family:var(--mono);font-size:12px;color:#fff;background:var(--ink);min-width:34px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700}
+  .vo-row .vtitle{font-size:14.5px;font-weight:600;color:var(--ink)}
+  .abtns{display:flex;gap:8px}
+  .pbtn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;font-family:var(--sans);font-size:12.5px;font-weight:700;padding:7px 12px;border-radius:9px;cursor:pointer;color:var(--ink-soft);transition:border-color .15s,color .15s,background .15s;white-space:nowrap;min-width:112px;justify-content:center}
+  .pbtn svg{width:14px;height:14px;flex:none}
+  .pbtn.ai:hover{border-color:#8a8f9c;color:var(--ink)}
+  .pbtn.real:hover{border-color:var(--martam-red);color:var(--martam-red-dark);background:#fff7f6}
+  .pbtn.playing{background:var(--martam-red);border-color:var(--martam-red);color:#fff}
+  .pbtn.playing svg{color:#fff}
+  .pbtn .lbl small{display:block;font-size:10px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;opacity:.7;line-height:1}
+  .vo-foot{font-size:12px;margin-top:14px}
+  @media(max-width:640px){
+    .vo-row{grid-template-columns:34px 1fr;grid-auto-flow:row}
+    .vo-row .abtns{grid-column:1 / -1;display:flex;gap:8px}
+    .pbtn{flex:1}
+  }
 </style>
 </head>
 <body>
@@ -205,7 +233,24 @@
           <tr><td>Output format</td><td>MP3 · 44.1 kHz · 128 kbps</td></tr>
         </tbody>
       </table>
-      <div class="q" style="margin-top:16px"><span class="tag">Decision pending</span><b>Evaluate after assembly</b>We assemble with this AI voice first. If it doesn't carry the warmth/authority we want, options are: (a) client records the script in their own voice, or (b) client records a reference take and we use ElevenLabs <em>voice-to-voice</em> to keep a real delivery with a consistent, reusable voice for future trainings. Locking the choice happens at first-cut review.</div>
+      <div class="q" style="margin-top:16px"><span class="tag">Decision pending</span><b>Evaluate after assembly</b>We assemble with this AI voice first. If it doesn't carry the warmth/authority we want, options are: (a) client records the script in their own voice, or (b) client records a reference take and we use ElevenLabs <em>voice-to-voice</em> to keep a real delivery with a consistent, reusable voice for future trainings. Locking the choice happens at first-cut review. <b>→ <a href="#vo-ab">Listen to the AI vs. live A/B comparison below.</a></b></div>
+    </div>
+  </section>
+
+  <!-- VOICE-OVER A/B -->
+  <section id="vo-ab">
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10v4M7 6v12M11 3v18M15 8v8M19 5v14"/></svg>Voice-over A/B — AI vs. live recording <span class="chip prog dot" style="margin-left:6px">for review</span></h2>
+    <div class="card">
+      <p class="muted">Compare the current AI narration (ElevenLabs “Marcus”) against <b>Gary's live-recorded reads</b>, chapter by chapter. Optionally drop a quiet music bed underneath to hear each read the way it would sit in the finished cut. Only one clip plays at a time.</p>
+      <div class="vo-controls">
+        <button id="bed-toggle" class="bedbtn" type="button" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          Music bed: <span id="bed-state">Off</span>
+        </button>
+        <div class="nowplaying" id="np">Nothing playing</div>
+      </div>
+      <div class="vo-rows" id="vo-rows"></div>
+      <p class="muted vo-foot">Live reads recorded by <b>Gary Ricke</b>. Music bed “The Road Ahead” plays quietly (~12% volume) and loops. AI reads are the ElevenLabs trial used in the current first cut.</p>
     </div>
   </section>
 
@@ -291,6 +336,7 @@
           <tr><td>2026-07-02</td><td>Created Descript project; imported media; laid 11 narration chapters on a 1080×1920 timeline.</td><td><span class="chip done dot">Done</span></td></tr>
           <tr><td>2026-07-02</td><td>Placed all 25 images (full-frame, Ken Burns) gaplessly; added captions; added 3 ducked music tracks; added 11 title cards + 15 callouts + end card.</td><td><span class="chip done dot">Done</span></td></tr>
           <tr><td>2026-07-02</td><td>Rendered 1080p 9:16 first cut → <a href="https://share.descript.com/view/3eC2CaLxpMf">share link</a>. Sent for review.</td><td><span class="chip prog dot">Review</span></td></tr>
+          <tr><td>2026-07-02</td><td>Client recorded <b>live human VO</b> for all 11 chapters; uploaded to Cloudinary. Added an <a href="#vo-ab">A/B voice-over comparison</a> (AI vs. live, per chapter) with an optional quiet music bed to this page.</td><td><span class="chip done dot">Done</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -301,5 +347,89 @@
   </footer>
 </div>
 
+<script>
+(function(){
+  var CDN="https://res.cloudinary.com/dsbllwpbh/video/upload/martam-safety/";
+  var CH=[
+    ["00","Welcome to Martam"],
+    ["01","General Safety Requirements"],
+    ["02","Personal Protective Equipment"],
+    ["03","Fall Protection"],
+    ["04","Electrical & Power Tools"],
+    ["05","Fire Prevention"],
+    ["06","Ladders & Material Handling"],
+    ["07","Flagging & Traffic"],
+    ["08","Housekeeping"],
+    ["09","First Aid & Injury Reporting"],
+    ["10","Acknowledgment & Close"]
+  ];
+  var PLAY='<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M7 5v14l11-7z"/></svg>';
+  var PAUSE='<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+
+  var rows=document.getElementById("vo-rows"),
+      np=document.getElementById("np"),
+      bedToggle=document.getElementById("bed-toggle"),
+      bedState=document.getElementById("bed-state");
+  if(!rows) return;
+
+  var player=new Audio(); player.preload="none";
+  var bed=new Audio(CDN+"music-road-ahead.mp3"); bed.preload="none"; bed.loop=true; bed.volume=0.12;
+  var bedOn=false, activeBtn=null;
+
+  function makeBtn(kind,url,label,sub){
+    var b=document.createElement("button");
+    b.type="button"; b.className="pbtn "+kind;
+    b.dataset.url=url; b.dataset.label=label;
+    b.innerHTML=PLAY+'<span class="lbl">'+sub+'</span>';
+    b.addEventListener("click",function(){ onPlay(b); });
+    return b;
+  }
+  CH.forEach(function(c){
+    var n=c[0], t=c[1];
+    var row=document.createElement("div"); row.className="vo-row";
+    var idx=document.createElement("div"); idx.className="vidx"; idx.textContent=n;
+    var title=document.createElement("div"); title.className="vtitle"; title.textContent=t;
+    var btns=document.createElement("div"); btns.className="abtns";
+    btns.appendChild(makeBtn("ai",CDN+"vo-ch"+n+".mp3","Ch "+n+" · AI voice",'AI voice'));
+    btns.appendChild(makeBtn("real",CDN+"vo-gary-ch"+n+".mp3","Ch "+n+" · Gary (live)",'Gary · live'));
+    row.appendChild(idx); row.appendChild(title); row.appendChild(btns);
+    rows.appendChild(row);
+  });
+
+  function clearActive(){
+    if(activeBtn){ activeBtn.classList.remove("playing"); activeBtn.innerHTML=PLAY+'<span class="lbl">'+activeBtn.querySelector(".lbl").textContent+'</span>'; }
+  }
+  function setNP(txt){ np.innerHTML=txt; }
+
+  function onPlay(btn){
+    if(activeBtn===btn && !player.paused){ player.pause(); return; }
+    clearActive();
+    activeBtn=btn;
+    var sub=btn.querySelector(".lbl").textContent;
+    if(player.src!==btn.dataset.url){ player.src=btn.dataset.url; }
+    player.play().then(function(){
+      btn.classList.add("playing");
+      btn.innerHTML=PAUSE+'<span class="lbl">'+sub+'</span>';
+      setNP('Now playing: <b>'+btn.dataset.label+'</b>');
+      if(bedOn && bed.paused){ bed.play().catch(function(){}); }
+    }).catch(function(){ setNP('Playback blocked — tap again.'); });
+  }
+
+  player.addEventListener("pause",function(){
+    if(activeBtn){ activeBtn.classList.remove("playing"); activeBtn.innerHTML=PLAY+'<span class="lbl">'+activeBtn.querySelector(".lbl").textContent+'</span>'; }
+  });
+  player.addEventListener("ended",function(){
+    clearActive(); activeBtn=null; setNP("Nothing playing");
+  });
+
+  bedToggle.addEventListener("click",function(){
+    bedOn=!bedOn;
+    bedToggle.setAttribute("aria-pressed",bedOn?"true":"false");
+    bedState.textContent=bedOn?"On":"Off";
+    if(bedOn){ bed.play().catch(function(){ /* needs gesture; this click is one */ }); }
+    else{ bed.pause(); }
+  });
+})();
+</script>
 </body>
 </html>
