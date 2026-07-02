@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SafetyCheck × Martam — Training Video Production Status</title>
+<style>
+  :root{
+    --martam-red:#E5231F;
+    --martam-red-dark:#B81A17;
+    --ink:#1c1d21;
+    --ink-soft:#41434b;
+    --muted:#6c6f7a;
+    --line:#e7e8ec;
+    --bg:#f6f7f9;
+    --card:#ffffff;
+    --hv:#c9f24d;         /* hi-vis accent from crew vests */
+    --good:#1f9d55;
+    --warn:#c98a12;
+    --wait:#8a8f9c;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(20,22,28,.05),0 8px 24px rgba(20,22,28,.06);
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--martam-red-dark);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+  /* Header */
+  header.hero{background:linear-gradient(160deg,#232428 0%,#141519 100%);color:#fff;padding:38px 0 30px;border-bottom:4px solid var(--martam-red)}
+  .brandrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .wordmark{font-weight:800;letter-spacing:.5px;font-size:26px;line-height:1;display:inline-flex;align-items:center;gap:2px}
+  .wordmark .m{background:var(--martam-red);color:#fff;padding:6px 9px;border-radius:6px}
+  .wordmark .c{color:#e9eaee;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;align-self:flex-end;padding-bottom:2px}
+  .by{margin-left:auto;font-size:13px;color:#aeb2bd;text-align:right}
+  .by strong{color:#fff}
+  h1{font-size:30px;line-height:1.15;margin:22px 0 8px;font-weight:800;letter-spacing:-.4px}
+  .sub{color:#c7cad3;max-width:60ch;font-size:15.5px}
+  .metastrip{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .pill{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#eef0f4;padding:6px 11px;border-radius:999px;font-size:12.5px;font-weight:500}
+  .pill svg{width:15px;height:15px}
+
+  /* Overall status banner */
+  .statusbanner{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--martam-red);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);margin-top:-22px;position:relative;z-index:2}
+  .statusbanner .dot{width:11px;height:11px;border-radius:50%;background:var(--warn);box-shadow:0 0 0 4px rgba(201,138,18,.15);flex:none}
+  .statusbanner b{font-weight:700}
+  .statusbanner .phasenow{color:var(--muted);font-size:14px}
+
+  section{margin:34px 0}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:700;margin:0 0 14px;display:flex;align-items:center;gap:9px}
+  h2 svg{width:17px;height:17px;color:var(--martam-red)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:720px){.g2,.g3{grid-template-columns:1fr}.by{margin-left:0;text-align:left}}
+
+  h3{font-size:16px;margin:0 0 6px;font-weight:700}
+  p{margin:0 0 10px}
+  .muted{color:var(--muted)}
+  ul.clean{margin:6px 0 0;padding-left:18px}
+  ul.clean li{margin:4px 0}
+
+  /* Pipeline */
+  .pipe{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  @media(max-width:720px){.pipe{grid-template-columns:1fr 1fr}}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;position:relative;box-shadow:var(--shadow)}
+  .step .n{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .step h4{margin:6px 0 4px;font-size:14px}
+  .step .s{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+  .s.done{color:var(--good)} .s.prog{color:var(--warn)} .s.wait{color:var(--wait)}
+  .step.doneb{border-color:#bfe6cd} .step.progb{border-color:#f0d9a6;background:#fffdf6}
+
+  /* Status chips */
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px}
+  .chip.done{background:#e7f6ec;color:var(--good)}
+  .chip.prog{background:#fdf3e0;color:var(--warn)}
+  .chip.wait{background:#eef0f3;color:var(--wait)}
+  .chip.dot::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+
+  /* Tables */
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);font-weight:700}
+  tbody tr:hover{background:#fafbfc}
+  td .cnum{font-family:var(--mono);color:var(--muted);font-size:12.5px}
+
+  /* Chapters list */
+  .chapter{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .chapter:last-child{border-bottom:0}
+  .chapter .idx{font-family:var(--mono);font-size:12px;color:#fff;background:var(--martam-red);min-width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+  .chapter .body h4{margin:2px 0 2px;font-size:15px}
+  .chapter .body .src{font-size:12px;color:var(--muted)}
+
+  /* Decisions / open questions */
+  .q{border-left:3px solid var(--martam-red);background:#fff;padding:12px 16px;border-radius:0 10px 10px 0;margin:10px 0;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .q b{display:block;margin-bottom:3px}
+  .tag{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--martam-red-dark);background:#fdeceb;padding:2px 8px;border-radius:6px;margin-bottom:6px}
+
+  .swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .sw{display:flex;align-items:center;gap:8px;font-size:12px;font-family:var(--mono);color:var(--ink-soft)}
+  .sw i{width:22px;height:22px;border-radius:6px;border:1px solid rgba(0,0,0,.12);display:inline-block}
+
+  footer{color:var(--muted);font-size:12.5px;text-align:center;padding:30px 0 50px}
+  code.k{font-family:var(--mono);font-size:12.5px;background:#eef0f3;padding:1px 6px;border-radius:5px;color:var(--ink-soft)}
+  .rev td{font-size:13px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brandrow">
+      <span class="wordmark"><span class="m">MARTAM</span><span class="c">Construction&nbsp;Inc.</span></span>
+      <span class="by">Produced by <strong>SafetyCheck&nbsp;Inc.</strong><br/>New-Hire Safety Orientation · 2026</span>
+    </div>
+    <h1>General Safety Training — Vertical Video Production</h1>
+    <p class="sub">A 9:16, phone-first new-hire orientation adapted from Martam's condensed general safety training deck. Voice-over script, branded on-site imagery, and final edit — documented end to end.</p>
+    <div class="metastrip">
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/></svg>Format 9:16 vertical</span>
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 4-6"/></svg>20 source slides</span>
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Est. 8–12 min</span>
+      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5"/><rect x="5" y="8" width="14" height="11" rx="1"/></svg>Elgin, IL · est. 1973</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="statusbanner">
+    <span class="dot" style="background:var(--good);box-shadow:0 0 0 4px rgba(31,157,85,.15)"></span>
+    <div>
+      <b>Overall status: First cut assembled — in review</b>
+      <div class="phasenow">Full 9:16 first cut built in Descript (25 images + captions + ducked music + 11 title cards + 15 callouts + end card) and rendered at 1080p. <a href="https://share.descript.com/view/3eC2CaLxpMf">▶ Watch the first cut</a>. Evaluating AI voice &amp; polish before final delivery.</div>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <section>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>Production pipeline</h2>
+    <div class="pipe">
+      <div class="step doneb"><div class="n">01</div><h4>Discovery</h4><div class="s done">Complete</div></div>
+      <div class="step doneb"><div class="n">02</div><h4>Plan &amp; scope</h4><div class="s done">Locked</div></div>
+      <div class="step progb"><div class="n">03</div><h4>VO script</h4><div class="s prog">v1 — review</div></div>
+      <div class="step doneb"><div class="n">04</div><h4>Narration</h4><div class="s done">AI v1 (trial)</div></div>
+      <div class="step doneb"><div class="n">05</div><h4>Branded images</h4><div class="s done">25 done</div></div>
+      <div class="step progb"><div class="n">06</div><h4>Edit &amp; deliver</h4><div class="s prog">First cut ✓</div></div>
+    </div>
+  </section>
+
+  <!-- PROJECT OVERVIEW -->
+  <section>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>What we're building</h2>
+    <div class="card">
+      <p>SafetyCheck is turning Martam's <em>Condensed General Training</em> PowerPoint (20 slides) into a modern, mobile-first onboarding video that a new hire can watch on a phone before their first shift. Deliverables:</p>
+      <div class="grid g3" style="margin-top:14px">
+        <div><h3>1 · Voice-over script</h3><p class="muted">Human, safety-conscious, in Martam's family-owned voice — for the client to read &amp; record. Chaptered for easy navigation.</p></div>
+        <div><h3>2 · Branded imagery</h3><p class="muted">Key-point visuals matched to the script, styled to Martam's real job sites and brand, sized 9:16.</p></div>
+        <div><h3>3 · Assembled video</h3><p class="muted">Captioned vertical cut synced to the recorded narration, delivered via GitHub → Netlify.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT BRAND / VOICE -->
+  <section>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"/></svg>Client &amp; voice assessment</h2>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Martam Construction Inc.</h3>
+        <ul class="clean muted">
+          <li>Founded <b>1973</b> by Tamas &amp; Maria Kutrovatz; <b>50+ years</b>, still family-run by their children.</li>
+          <li>Based in <b>Elgin, Illinois</b>. Heavy-civil / infrastructure.</li>
+          <li>Tagline: <b>"Building in All Directions."</b></li>
+          <li>Core work: concrete paving (roads &amp; runways), excavation &amp; earthwork, structures &amp; bridges, underground utilities.</li>
+        </ul>
+        <div class="swatches">
+          <span class="sw"><i style="background:#E5231F"></i>#E5231F Martam red</span>
+          <span class="sw"><i style="background:#232428"></i>#232428 charcoal</span>
+          <span class="sw"><i style="background:#c9f24d"></i>hi-vis accent</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Voice we'll write in</h3>
+        <p class="muted">Grounded, plain-spoken, and proud — a 50-year family company that looks out for its crew. Direct second-person ("you"), first-person-plural ownership ("here at Martam, we…"), zero corporate stiffness. Every rule tied to <em>why it keeps you and the person next to you safe</em>. Warm open + welcome, firm on non-negotiables (hard hats, fall protection, reporting).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NARRATION SOURCE -->
+  <section>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Narration — voice source <span class="chip prog dot" style="margin-left:6px">trial v1</span></h2>
+    <div class="card">
+      <p><b>Current build uses an AI-generated voice</b> (not a human recording yet), chosen deliberately as a fast, flexible first pass so we can evaluate the fully assembled video before committing to a studio voiceover. The full script was narrated chapter-by-chapter and delivered as 11 MP3 files in <code class="k">/voice-overs</code> (≈ 7:47 total).</p>
+      <table style="margin-top:14px">
+        <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Engine</td><td>ElevenLabs</td></tr>
+          <tr><td>Voice</td><td>“Marcus — authoritative and deep”</td></tr>
+          <tr><td>Model</td><td>Eleven v3</td></tr>
+          <tr><td>Stability</td><td>Creative (slider at minimum / most expressive)</td></tr>
+          <tr><td>Language override</td><td>Off</td></tr>
+          <tr><td>Output format</td><td>MP3 · 44.1 kHz · 128 kbps</td></tr>
+        </tbody>
+      </table>
+      <div class="q" style="margin-top:16px"><span class="tag">Decision pending</span><b>Evaluate after assembly</b>We assemble with this AI voice first. If it doesn't carry the warmth/authority we want, options are: (a) client records the script in their own voice, or (b) client records a reference take and we use ElevenLabs <em>voice-to-voice</em> to keep a real delivery with a consistent, reusable voice for future trainings. Locking the choice happens at first-cut review.</div>
+    </div>
+  </section>
+
+  <!-- ENVIRONMENT -->
+  <section>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18M5 20V9l4-3 4 3M13 20V11l4-2 2 2v9"/></svg>Job-site environment (from real crew photos)</h2>
+    <div class="card">
+      <p>Thirteen real Martam job-site photos set the look for all generated imagery: <b>underground utility &amp; trenching work</b> — excavated pits with shored trench boxes, excavators (Link-Belt, CAT), sewer/water installs, flagging and roadway zones, in leafy suburban Midwest settings. Crews wear <b>yellow-green hi-vis vests with orange contrast, white/red/black hard hats</b>, and the Martam-logo vest print. (One photo shows a SafetyCheck <em>Confined Space Entry Permit</em> and acknowledgment form — confirming SafetyCheck as the training provider.) Generated scenes will match this palette, PPE, equipment, and lighting for authenticity.</p>
+    </div>
+  </section>
+
+  <!-- CHAPTERS -->
+  <section>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>Proposed chapter structure <span class="chip wait dot" style="margin-left:6px">draft</span></h2>
+    <div class="card">
+      <div class="chapter"><div class="idx">00</div><div class="body"><h4>Welcome to Martam</h4><div class="src">Cold open — 50 years, family-owned, "we all go home safe." · Slides 1, 20</div></div></div>
+      <div class="chapter"><div class="idx">01</div><div class="body"><h4>General Safety Requirements</h4><div class="src">Study the job, obey warning signs, report hazards immediately. · Slide 2</div></div></div>
+      <div class="chapter"><div class="idx">02</div><div class="body"><h4>Personal Protective Equipment</h4><div class="src">Hard hats, eye/face, hearing, respiratory, gloves, boots, hi-vis. · Slides 13–16, 18–19</div></div></div>
+      <div class="chapter"><div class="idx">03</div><div class="body"><h4>Fall Protection</h4><div class="src">6-ft rule, guardrails, harness &amp; lanyard, static lines — no safety belts. · Slides 5, 16</div></div></div>
+      <div class="chapter"><div class="idx">04</div><div class="body"><h4>Electrical &amp; Power / Hand Tools</h4><div class="src">Grounded/double-insulated, inspect &amp; tag out, guards on, qualified repairs. · Slides 3, 9</div></div></div>
+      <div class="chapter"><div class="idx">05</div><div class="body"><h4>Fire Prevention</h4><div class="src">Emergency numbers, extinguisher location/use, evacuation plans. · Slide 4</div></div></div>
+      <div class="chapter"><div class="idx">06</div><div class="body"><h4>Ladders &amp; Material Handling</h4><div class="src">Ladder angles/steps, safe lifting, mechanical aids, safe storage. · Slides 11, 12</div></div></div>
+      <div class="chapter"><div class="idx">07</div><div class="body"><h4>Flagging &amp; Traffic</h4><div class="src">Never turn your back on traffic, stay visible, training required. · Slide 6</div></div></div>
+      <div class="chapter"><div class="idx">08</div><div class="body"><h4>Housekeeping</h4><div class="src">Clean site, approved containers, bend over nails. · Slide 10</div></div></div>
+      <div class="chapter"><div class="idx">09</div><div class="body"><h4>First Aid &amp; Injury Reporting</h4><div class="src">Report everything immediately, sign the log, cooperate with investigations. · Slides 7, 8, 17</div></div></div>
+      <div class="chapter"><div class="idx">10</div><div class="body"><h4>Acknowledgment &amp; Close</h4><div class="src">Sign the orientation form; welcome to the team. · Slide 20</div></div></div>
+    </div>
+  </section>
+
+  <!-- OPEN DECISIONS -->
+  <section>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4 10-10"/><circle cx="12" cy="12" r="10"/></svg>Decisions (locked with client)</h2>
+    <div class="grid g2">
+      <div class="q"><span class="tag">Scope</span><b>Modular micro-chapters</b>Each of 11 chapters is its own 45–90-sec clip plus one combined cut — reusable for targeted refreshers.</div>
+      <div class="q"><span class="tag">Imagery</span><b>AI scenes styled to real photos</b>Net-new branded 9:16 visuals matched to Martam's environment &amp; PPE; covers every topic the 13 photos don't.</div>
+      <div class="q"><span class="tag">Assembly</span><b>SafetyCheck assembles in Descript</b>Client records VO; SafetyCheck syncs audio + images + captions and exports the vertical master.</div>
+      <div class="q"><span class="tag">On-screen</span><b>Captions + key-point callouts</b>Burned-in subtitles plus short bold callouts (e.g. "HARD HAT — ALWAYS") for muted phone viewing.</div>
+    </div>
+  </section>
+
+  <!-- TOOLING -->
+  <section>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 7l3 3M3 21l3-1 11-11a2.8 2.8 0 0 0-4-4L2 16z"/></svg>Tools &amp; method</h2>
+    <div class="card">
+      <table>
+        <thead><tr><th>Stage</th><th>Tooling</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Source parse</td><td><code class="k">pptx → XML</code></td><td>20 slides extracted verbatim as the content of record.</td></tr>
+          <tr><td>Script</td><td>Claude (Opus)</td><td>Chaptered VO written in Martam's voice; timed for phone attention spans.</td></tr>
+          <tr><td>Imagery</td><td>nano-banana / Gemini · fal.ai</td><td>Reference-guided generation matched to real job photos &amp; brand; 9:16.</td></tr>
+          <tr><td>Narration</td><td>ElevenLabs (trial)</td><td>“Marcus” · Eleven v3 · Stability Creative · MP3 44.1kHz/128kbps — evaluate vs. human VO.</td></tr>
+          <tr><td>Music</td><td>Suno (Pro)</td><td>Instrumental beds, commercial-use; auto-ducked under narration in the edit.</td></tr>
+          <tr><td>Hosting (media)</td><td>Cloudinary</td><td>All raster/video assets served optimized (<code class="k">f_auto,q_auto</code>).</td></tr>
+          <tr><td>Edit</td><td>Descript</td><td>Sync narration, captions, callouts; export vertical master.</td></tr>
+          <tr><td>Delivery</td><td>GitHub → Netlify</td><td><a href="https://github.com/garyricke/safetycheck">garyricke/safetycheck</a> — reusable per-client template.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CHANGELOG -->
+  <section>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>Activity log</h2>
+    <div class="card">
+      <table class="rev">
+        <thead><tr><th style="width:120px">Date</th><th>Entry</th><th style="width:110px">Status</th></tr></thead>
+        <tbody>
+          <tr><td>2026-07-02</td><td>Parsed 20-slide source deck; extracted all body copy as content of record.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Assessed Martam brand &amp; voice from martam.com; captured colors, tagline, history.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Reviewed 13 real job-site photos; locked environment/PPE reference for imagery.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Drafted chapter structure &amp; created this status document.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Client locked scope: modular micro-chapters · AI scenes · Descript assembly · captions + callouts.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Wrote VO script v1 — 11 modular chapters, ~1,500 words, with image &amp; callout cues.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Generated 2 branded 9:16 sample frames (Nano Banana Pro); style matches real job photos.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Delivered read-ready HTML teleprompter version of the script (reading mode, text sizing, chapter jump).</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Narration v1 produced as <b>AI voice</b> (ElevenLabs · “Marcus” · Eleven v3 · Stability=Creative · MP3 44.1kHz/128kbps) — trial pass to evaluate before any human VO.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Received 11 chapter VO files (≈ 7:47 total); began generating the branded 9:16 image set.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Generated full <b>25-image branded set</b> (Nano Banana Pro, 9:16 2K) across all 11 chapters; re-rolled 3 for artifacts/letterboxing.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Built assembly blueprint (per-chapter image + callout timings).</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Added <b>music</b> plan — instrumental Suno beds (Welcome / Underscore / Home Safe), auto-ducked under VO with emphasis drops on key lines; logged to blueprint.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Client delivered Suno music files to <code class="k">/deliverables/music</code>.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Uploaded all 39 media assets to Cloudinary (<code class="k">martam-safety/</code>); built URL manifest.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Created Descript project; imported media; laid 11 narration chapters on a 1080×1920 timeline.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Placed all 25 images (full-frame, Ken Burns) gaplessly; added captions; added 3 ducked music tracks; added 11 title cards + 15 callouts + end card.</td><td><span class="chip done dot">Done</span></td></tr>
+          <tr><td>2026-07-02</td><td>Rendered 1080p 9:16 first cut → <a href="https://share.descript.com/view/3eC2CaLxpMf">share link</a>. Sent for review.</td><td><span class="chip prog dot">Review</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    SafetyCheck Inc. · Training video production log · Client: Martam Construction Inc. · This document updates as the project progresses.
+  </footer>
+</div>
+
+</body>
+</html>

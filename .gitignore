@@ -1,0 +1,15 @@
+# Secrets — never commit
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+
+# Large media — hosted on Cloudinary, not in the repo
+*.mp4
+*.mov
+*.screenflow
+*.wav
+
+# Node
+node_modules/

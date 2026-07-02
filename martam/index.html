@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Martam Construction — New-Hire Safety Orientation</title>
+<meta name="description" content="Martam Construction general safety orientation — watch the training, study by chapter, and quiz yourself." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23E5231F'/%3E%3Ctext x='50' y='72' font-family='Arial' font-weight='800' font-size='64' fill='white' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#E5231F; --red-d:#B81A17; --hivis:#c9f24d; --gold:#F5C518; --green:#2fbf6b; --wrong:#ff5b52;
+    --black:#0f1012; --bg:#141519; --card:#1c1d22; --card2:#232430; --border:#2e2f37; --border2:#3a3b45;
+    --ink:#f3f4f6; --muted:#a2a6b2; --faint:#71757f;
+    --cond:'Barlow Condensed',sans-serif; --sans:'Barlow',sans-serif; --rad:10px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--black);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--red);text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  h1,h2,h3,h4,.cond{font-family:var(--cond)}
+  ::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#33343d;border-radius:6px}::-webkit-scrollbar-thumb:hover{background:var(--red)}
+
+  /* NAV */
+  #topnav{position:sticky;top:0;z-index:60;background:rgba(15,16,18,.92);backdrop-filter:blur(10px);border-bottom:2px solid var(--red);transition:background .25s}
+  #topnav .inner{max-width:1080px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;transition:padding .25s}
+  #topnav img{height:54px;width:auto;display:block;transition:height .25s}
+  #topnav.shrink .inner{padding:7px 20px}
+  #topnav.shrink img{height:28px}
+  .nav-div{width:1px;height:26px;background:var(--border2)}
+  .nav-title{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:15px;line-height:1}
+  .nav-title span{color:var(--muted);font-weight:600;font-size:11px;display:block;letter-spacing:1px}
+  .nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .hud{display:flex;align-items:center;gap:9px}
+  .hud .bar{width:120px;height:7px;background:#2a2b33;border-radius:99px;overflow:hidden}
+  .hud .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),#ff6a4d);transition:width .4s}
+  .hud .scr{font-family:var(--cond);font-weight:700;font-size:14px;white-space:nowrap}
+  .hud .scr b{color:var(--gold)}
+  .by{font-size:10.5px;color:var(--faint);text-align:right;line-height:1.3}
+  .by b{color:var(--muted)}
+  @media(max-width:760px){.by,.nav-div{display:none}.hud .bar{width:70px}}
+
+  /* MODULE STICKY TABS */
+  #mnav{position:sticky;top:44px;z-index:55;background:rgba(20,21,25,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch}
+  #mnav .inner{display:flex;gap:6px;padding:8px 20px;max-width:1080px;margin:0 auto;white-space:nowrap}
+  .mtab{font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.5px;font-size:12.5px;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:6px 12px;border-radius:99px;cursor:pointer;transition:.15s;flex:none}
+  .mtab:hover{color:var(--ink);border-color:var(--border2)}
+  .mtab.done{color:var(--green);border-color:rgba(47,191,107,.4)}
+  .mtab.done::before{content:"✓ "}
+
+  /* HERO */
+  #hero{position:relative;min-height:480px;display:flex;align-items:center;padding:60px 0 52px;border-bottom:1px solid var(--border);
+    background-image:
+      linear-gradient(90deg, rgba(13,14,16,.96) 0%, rgba(13,14,16,.82) 40%, rgba(13,14,16,.5) 78%, rgba(13,14,16,.62) 100%),
+      linear-gradient(180deg, rgba(13,14,16,.3) 0%, transparent 34%, transparent 52%, var(--black) 100%),
+      url('https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_2400/martam-safety/hero-superwide.jpg');
+    background-size:cover;background-position:center right;background-repeat:no-repeat}
+  #hero .wrap{position:relative;z-index:1;width:100%}
+  #hero h1,#hero .eyebrow,#hero p.sub{text-shadow:0 2px 18px rgba(0,0,0,.55)}
+  .eyebrow{font-family:var(--cond);text-transform:uppercase;letter-spacing:3px;font-size:13px;font-weight:600;color:var(--red)}
+  #hero h1{font-size:clamp(34px,6vw,58px);font-weight:800;text-transform:uppercase;letter-spacing:-.5px;line-height:.98;margin:10px 0 12px}
+  #hero h1 em{color:var(--red);font-style:normal}
+  #hero p.sub{color:var(--muted);max-width:62ch;font-size:17px}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.5px;font-size:12.5px;background:var(--card);border:1px solid var(--border);color:var(--muted);padding:6px 11px;border-radius:99px}
+  .badge svg{width:15px;height:15px;color:var(--red)}
+
+  section.blk{padding:34px 0;border-bottom:1px solid var(--border)}
+  .sec-label{font-family:var(--cond);text-transform:uppercase;letter-spacing:2px;font-size:12.5px;font-weight:600;color:var(--red);display:flex;align-items:center;gap:8px}
+  .sec-label svg{width:16px;height:16px}
+  h2.sec-title{font-size:clamp(24px,4vw,34px);font-weight:800;text-transform:uppercase;letter-spacing:-.3px;margin:6px 0 6px}
+  p.sec-desc{color:var(--muted);max-width:64ch;margin:0 0 20px}
+
+  /* VIDEO + CHAPTERS */
+  .vf-stage{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:22px;align-items:start}
+  @media(max-width:820px){.vf-stage{grid-template-columns:1fr}}
+  .video-vert{background:#000;border:1px solid var(--border);border-radius:14px;overflow:hidden;aspect-ratio:9/16;max-height:76vh;margin:0 auto;width:100%}
+  .video-vert video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+  .vf-chapters{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;align-self:stretch}
+  .vf-ch-head{display:flex;align-items:center;gap:8px;font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:14px;padding:13px 16px;border-bottom:1px solid var(--border);color:var(--ink)}
+  .vf-ch-head svg{width:17px;height:17px;color:var(--red)}
+  .vf-ch-list{max-height:560px;overflow-y:auto}
+  .chapter{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--border);padding:11px 16px;cursor:pointer;color:var(--muted);transition:.12s}
+  .chapter:hover{background:#23242c;color:var(--ink)}
+  .chapter.active{background:rgba(229,35,31,.16);color:var(--ink);box-shadow:inset 3px 0 0 var(--red)}
+  .ch-time{font-family:var(--cond);font-weight:700;font-size:13px;color:var(--red);min-width:38px}
+  .chapter.active .ch-time{color:#ff8a72}
+  .ch-title{font-size:14.5px;font-weight:500}
+  .ch-n{font-family:var(--cond);font-weight:700;color:var(--faint);font-size:12px;min-width:20px}
+
+  /* USE strip */
+  .use{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+  @media(max-width:720px){.use{grid-template-columns:1fr}}
+  .use .u{background:var(--card);border:1px solid var(--border);border-radius:var(--rad);padding:16px}
+  .use .u b{font-family:var(--cond);text-transform:uppercase;letter-spacing:.5px;font-size:15px}
+  .use .u p{color:var(--muted);font-size:14px;margin:4px 0 0}
+  .use .u .n{color:var(--red);font-family:var(--cond);font-weight:800;font-size:22px}
+
+  /* MODULE */
+  .mod-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+  @media(max-width:820px){.mod-grid{grid-template-columns:1fr}}
+  .keypoints{display:flex;flex-direction:column;gap:10px}
+  .kp{display:flex;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:var(--rad);padding:13px 15px}
+  .kp .dot{flex:none;width:26px;height:26px;border-radius:7px;background:rgba(229,35,31,.15);color:var(--red);display:flex;align-items:center;justify-content:center}
+  .kp .dot svg{width:16px;height:16px}
+  .kp b{font-family:var(--cond);font-size:15.5px;letter-spacing:.3px;text-transform:uppercase}
+  .kp p{margin:2px 0 0;color:var(--muted);font-size:14px}
+  .mod-media{position:sticky;top:96px}
+  .mod-media img{width:100%;border-radius:12px;border:1px solid var(--border);display:block}
+  .mod-media .cap{color:var(--faint);font-size:12px;margin-top:6px;text-align:center}
+
+  /* KNOWLEDGE CHECK */
+  .check{margin-top:18px;background:linear-gradient(180deg,#20141400,#1a1114 0);border:1px solid var(--border);border-radius:14px;padding:18px 18px 6px;background:#181820}
+  .check-h{font-family:var(--cond);text-transform:uppercase;letter-spacing:1px;font-size:13px;color:var(--red);font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .check-h svg{width:16px;height:16px}
+  .qb{padding:14px 0;border-top:1px solid var(--border)}
+  .qb:first-of-type{border-top:0}
+  .qb .qq{font-weight:600;font-size:16px;margin-bottom:11px}
+  .tf-row{display:flex;gap:10px}
+  .opt,.tf{font-family:var(--sans);font-weight:600;font-size:15px;color:var(--ink);background:var(--card2);border:1px solid var(--border2);border-radius:9px;padding:11px 14px;cursor:pointer;transition:.12s;text-align:left}
+  .tf{flex:1;text-align:center}
+  .opt{display:flex;gap:11px;align-items:flex-start;width:100%;margin-bottom:8px}
+  .opt .let{font-family:var(--cond);font-weight:800;color:var(--red);flex:none}
+  .opt:hover,.tf:hover{border-color:var(--red)}
+  .opt.correct,.tf.correct{background:rgba(47,191,107,.16);border-color:var(--green);color:#c8f7d9}
+  .opt.wrong,.tf.wrong{background:rgba(255,91,82,.14);border-color:var(--wrong);color:#ffd2cf}
+  .opt.dim{opacity:.5}
+  .fb{margin-top:9px;font-size:14px;border-radius:8px;padding:10px 12px;display:none}
+  .fb.show{display:block}
+  .fb.good{background:rgba(47,191,107,.12);border:1px solid rgba(47,191,107,.4);color:#bff3d2}
+  .fb.bad{background:rgba(255,91,82,.1);border:1px solid rgba(255,91,82,.35);color:#ffcfcb}
+  .fb b{font-family:var(--cond);text-transform:uppercase;letter-spacing:.5px}
+
+  /* FLASHCARDS */
+  .fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .flip{background:transparent;perspective:1200px;height:170px;cursor:pointer}
+  .flip-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.flipped .flip-in{transform:rotateY(180deg)}
+  .flip-f,.flip-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--border)}
+  .flip-f{background:var(--card);}
+  .flip-f .q{font-family:var(--cond);text-transform:uppercase;letter-spacing:.5px;font-size:17px;font-weight:700}
+  .flip-f .hint{color:var(--faint);font-size:11.5px;margin-top:auto;text-transform:uppercase;letter-spacing:1px}
+  .flip-b{background:linear-gradient(160deg,#2a1618,#201316);border-color:rgba(229,35,31,.4);transform:rotateY(180deg)}
+  .flip-b .a{font-size:14.5px;color:#ffe0dd}
+  .flip-b .a b{color:#fff}
+
+  /* DRAG MATCH */
+  .match{display:grid;grid-template-columns:210px 1fr;gap:18px}
+  @media(max-width:720px){.match{grid-template-columns:1fr}}
+  .chips{display:flex;flex-direction:column;gap:9px}
+  .chip{background:var(--card2);border:1px solid var(--border2);border-radius:9px;padding:11px 13px;font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:14px;cursor:grab;text-align:center}
+  .chip.used{opacity:.35;pointer-events:none}
+  .zones{display:flex;flex-direction:column;gap:9px}
+  .zone{display:flex;align-items:center;gap:12px;background:var(--card);border:1px dashed var(--border2);border-radius:9px;padding:10px 13px;min-height:52px;transition:.12s}
+  .zone.over{border-color:var(--red);background:#22161a}
+  .zone.correct{border-style:solid;border-color:var(--green);background:rgba(47,191,107,.1)}
+  .zone.wrong{border-style:solid;border-color:var(--wrong);background:rgba(255,91,82,.1)}
+  .zone .zl{color:var(--muted);font-size:14px;flex:1}
+  .zone .slot{min-width:120px;font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:13px;color:var(--faint);border-left:1px solid var(--border);padding-left:12px}
+  .zone .slot.filled{color:var(--ink)}
+  .btn{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:14px;background:var(--red);color:#fff;border:0;border-radius:9px;padding:11px 20px;cursor:pointer}
+  .btn:hover{background:var(--red-d)}
+  .btn.ghost{background:transparent;border:1px solid var(--border2);color:var(--muted)}
+  .btn.ghost:hover{border-color:var(--red);color:var(--ink)}
+  .row-actions{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+  .row-actions .msg{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+
+  /* BLITZ */
+  .blitz{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;max-width:640px}
+  .blitz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .blitz-top .pill{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:13px;color:var(--muted)}
+  .blitz-top .pill b{color:var(--gold)}
+  .blitz-q{font-size:20px;font-weight:600;min-height:56px;display:flex;align-items:center}
+  .blitz-bar{height:6px;background:#2a2b33;border-radius:99px;overflow:hidden;margin:14px 0}
+  .blitz-bar i{display:block;height:100%;background:var(--red);width:0;transition:.3s}
+  .streak{color:var(--hivis);font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:13px;min-height:18px}
+
+  /* FINAL */
+  .final-score{position:sticky;top:96px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center}
+  .final-score .big{font-family:var(--cond);font-weight:800;font-size:52px;line-height:1;color:var(--gold)}
+  .final-score .lbl{color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-size:12px;font-family:var(--cond)}
+  .final-score .verdict{margin-top:12px;font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:16px;padding:8px;border-radius:8px;display:none}
+  .final-score .verdict.pass{display:block;background:rgba(47,191,107,.14);color:#bff3d2}
+  .final-score .verdict.fail{display:block;background:rgba(255,91,82,.12);color:#ffcfcb}
+  .final-grid{display:grid;grid-template-columns:1fr 250px;gap:24px;align-items:start}
+  @media(max-width:820px){.final-grid{grid-template-columns:1fr}.final-score{position:static}}
+
+  footer{padding:34px 0 60px;color:var(--faint);font-size:13px;text-align:center}
+  footer b{color:var(--muted)}
+  .disc{max-width:70ch;margin:10px auto 0;font-size:12px;color:var(--faint)}
+</style>
+<style>
+/* Admin entry — discreet badge → slide-in internal-links panel (Martam) */
+:root{
+  --adm-accent:#E5231F; --adm-accent-hover:#ff3b36; --adm-ink:#ecf0f4;
+  --adm-panel-bg:linear-gradient(165deg,#1c1e22 0%,#141518 55%,#0b0c0e 100%);
+  --adm-font-display:'Barlow Condensed',system-ui,sans-serif;
+  --adm-font-body:'Barlow',system-ui,sans-serif;
+}
+#adm{position:fixed;bottom:24px;right:24px;z-index:900;font-family:var(--adm-font-display)}
+#adm-btn{width:32px;height:32px;border-radius:50%;border:1px solid color-mix(in srgb,var(--adm-accent) 35%,transparent);background:rgba(15,16,18,.5);color:color-mix(in srgb,var(--adm-accent) 60%,transparent);font-size:.95rem;cursor:pointer;opacity:.35;padding:0;line-height:1;display:flex;align-items:center;justify-content:center;transition:opacity .25s,color .25s,border-color .25s,background .25s}
+#adm-btn:hover,#adm-btn:focus-visible,#adm[aria-expanded="true"] #adm-btn{opacity:1;color:var(--adm-accent);border-color:var(--adm-accent);background:rgba(15,16,18,.92);outline:none}
+#adm-scrim{position:fixed;inset:0;z-index:1100;background:rgba(6,7,9,.6);backdrop-filter:blur(2px);animation:admFade .25s ease-out}
+#adm-scrim[hidden]{display:none}
+#adm-panel{position:fixed;top:0;right:0;z-index:1110;width:min(340px,88vw);height:100%;background:var(--adm-panel-bg);border-left:1px solid color-mix(in srgb,var(--adm-accent) 30%,transparent);box-shadow:-24px 0 70px rgba(0,0,0,.5);transform:translateX(100%);transition:transform .34s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;font-family:var(--adm-font-body)}
+#adm-panel.open{transform:translateX(0)}
+.adm-panel-head{display:flex;align-items:flex-end;justify-content:space-between;padding:26px 24px 18px;border-bottom:1px solid color-mix(in srgb,var(--adm-accent) 18%,transparent)}
+.adm-eyebrow{display:block;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:color-mix(in srgb,var(--adm-accent) 90%,transparent);margin-bottom:4px}
+.adm-panel-brand h3{font-family:var(--adm-font-display);font-size:1.7rem;color:#fff;letter-spacing:.05em;margin:0;line-height:1}
+#adm-panel-close{background:transparent;border:0;cursor:pointer;color:color-mix(in srgb,var(--adm-ink) 60%,transparent);width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:color .15s,background .15s}
+#adm-panel-close svg{width:20px;height:20px}
+#adm-panel-close:hover{color:var(--adm-accent);background:color-mix(in srgb,var(--adm-accent) 12%,transparent)}
+.adm-links{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:4px}
+.adm-links a{display:flex;align-items:flex-start;gap:13px;padding:13px 14px;border-radius:10px;text-decoration:none;color:var(--adm-ink);border:1px solid transparent;transition:background .15s,border-color .15s,transform .15s}
+.adm-links a:hover{background:color-mix(in srgb,var(--adm-accent) 10%,transparent);border-color:color-mix(in srgb,var(--adm-accent) 28%,transparent);transform:translateX(-2px)}
+.adm-ic{flex:none;width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--adm-accent) 14%,transparent);color:var(--adm-accent);border:1px solid color-mix(in srgb,var(--adm-accent) 22%,transparent)}
+.adm-ic svg{width:20px;height:20px}
+.adm-links a:hover .adm-ic{background:color-mix(in srgb,var(--adm-accent) 22%,transparent)}
+.adm-txt{display:flex;flex-direction:column;gap:2px;padding-top:1px}
+.adm-txt b{font-weight:600;font-size:.92rem;color:#fff;letter-spacing:.01em}
+.adm-txt small{font-size:.72rem;line-height:1.4;color:color-mix(in srgb,var(--adm-ink) 62%,transparent);font-weight:300}
+.adm-panel-foot{padding:14px 18px 20px;border-top:1px solid rgba(255,255,255,.08)}
+#adm-lock-out{display:flex;align-items:center;gap:9px;width:100%;padding:11px 14px;background:transparent;border:1px solid rgba(255,255,255,.14);border-radius:9px;color:color-mix(in srgb,var(--adm-ink) 60%,transparent);font-family:var(--adm-font-body);font-size:.8rem;letter-spacing:.02em;cursor:pointer;transition:color .15s,border-color .15s,background .15s}
+#adm-lock-out svg{width:16px;height:16px}
+#adm-lock-out:hover{color:var(--adm-accent);border-color:color-mix(in srgb,var(--adm-accent) 40%,transparent);background:color-mix(in srgb,var(--adm-accent) 8%,transparent)}
+@keyframes admFade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){#adm-panel{transition:none}#adm-scrim{animation:none}}
+</style>
+</head>
+<body>
+
+<nav id="topnav"><div class="inner">
+  <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/martam-safety/logo-martam-whtk.svg" alt="Martam Construction Inc.">
+  <div class="nav-div"></div>
+  <div class="nav-title">Safety Orientation<span>New-Hire · 2026</span></div>
+  <div class="nav-right">
+    <div class="hud">
+      <div class="bar"><i id="prog"></i></div>
+      <div class="scr">Score <b id="score">0</b>/<span id="scoremax">0</span></div>
+    </div>
+    <div class="by">Produced by<br><b>SafetyCheck Inc.</b></div>
+  </div>
+</div></nav>
+
+<div id="mnav"><div class="inner" id="mnav-inner"></div></div>
+
+<header id="hero"><div class="wrap">
+  <div class="eyebrow">Martam Construction Inc. · Est. 1973</div>
+  <h1>New-Hire <em>Safety</em> Orientation</h1>
+  <p class="sub">Watch the orientation, jump to any chapter, and test yourself as you go. Everything here is to help you learn the habits that get you — and the person next to you — home safe. Your answers stay on your device; nothing is recorded.</p>
+  <div class="badges">
+    <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>11 Chapters · ~8 min</span>
+    <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>Interactive Quizzes</span>
+    <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/></svg>Flashcards & Scenarios</span>
+    <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5"/></svg>Building in All Directions</span>
+  </div>
+</div></header>
+
+<!-- WATCH -->
+<section class="blk" id="watch"><div class="wrap">
+  <div class="sec-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none"/></svg>Watch the Orientation</div>
+  <h2 class="sec-title">The Full Training</h2>
+  <p class="sec-desc">Play it straight through, or tap a chapter to jump right to that topic. The active chapter highlights as it plays.</p>
+  <div class="vf-stage video-block" data-start="0" data-end="inf">
+    <div class="video-vert">
+      <video id="mainvid" controls playsinline preload="metadata"
+        poster="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1080/martam-safety/IMG-00-1_welcome-hero.jpg">
+        <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/martam-safety/martam-safety-orientation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="vf-chapters">
+      <div class="vf-ch-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Chapters</div>
+      <div class="vf-ch-list" id="chapter-list"></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- HOW TO USE -->
+<section class="blk"><div class="wrap">
+  <div class="sec-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>How to use this page</div>
+  <div class="use">
+    <div class="u"><div class="n">01</div><b>Watch &amp; explore</b><p>Watch the video and use the chapters to revisit any topic.</p></div>
+    <div class="u"><div class="n">02</div><b>Study each module</b><p>Read the key points, flip the flashcards, and match the gear.</p></div>
+    <div class="u"><div class="n">03</div><b>Quiz yourself</b><p>Answer the checks, run the Safety Blitz, then take the final quiz.</p></div>
+  </div>
+</div></section>
+
+<!-- MODULES render here -->
+<div id="modules"></div>
+
+<!-- FLASHCARDS -->
+<section class="blk" id="flashcards"><div class="wrap">
+  <div class="sec-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/></svg>Study Tool</div>
+  <h2 class="sec-title">Flashcards</h2>
+  <p class="sec-desc">Tap a card to flip it. Quick-hit the rules that matter most before you take the quiz.</p>
+  <div class="fc-grid" id="fc-grid"></div>
+</div></section>
+
+<!-- MATCH -->
+<section class="blk" id="match"><div class="wrap">
+  <div class="sec-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h6v10H4zM14 7h6v10h-6z"/><path d="M10 12h4"/></svg>Study Tool</div>
+  <h2 class="sec-title">Match the Gear</h2>
+  <p class="sec-desc">Drag each piece of PPE onto the hazard it protects you from, then check your answers.</p>
+  <div class="match">
+    <div class="chips" id="chips"></div>
+    <div>
+      <div class="zones" id="zones"></div>
+      <div class="row-actions">
+        <button class="btn" onclick="checkMatch()">Check Answers</button>
+        <button class="btn ghost" onclick="resetMatch()">Reset</button>
+        <span class="msg" id="match-msg"></span>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- SCENARIOS -->
+<section class="blk" id="scenarios"><div class="wrap">
+  <div class="sec-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/><path d="M9 21h6M10 17v4M14 17v4"/></svg>Think It Through</div>
+  <h2 class="sec-title">What Would You Do?</h2>
+  <p class="sec-desc">Real situations you'll face on a Martam site. Pick the safest move.</p>
+  <div class="check" id="scen-list" style="max-width:820px"></div>
+</div></section>
+
+<!-- BLITZ -->
+<section class="blk" id="blitz"><div class="wrap">
+  <div class="sec-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7z" fill="currentColor" stroke="none"/></svg>Rapid Review</div>
+  <h2 class="sec-title">Safety Blitz</h2>
+  <p class="sec-desc">Ten quick true-or-false calls. Keep your streak alive.</p>
+  <div class="blitz" id="blitz-box">
+    <div class="blitz-top"><span class="pill">Question <b id="b-num">1</b>/10</span><span class="pill">Score <b id="b-score">0</b></span></div>
+    <div class="blitz-bar"><i id="b-bar"></i></div>
+    <div class="blitz-q" id="b-q">Ready?</div>
+    <div class="streak" id="b-streak"></div>
+    <div class="row-actions">
+      <button class="btn" id="b-true" onclick="blitzAns(true)">TRUE</button>
+      <button class="btn" id="b-false" onclick="blitzAns(false)">FALSE</button>
+      <button class="btn ghost" id="b-restart" onclick="startBlitz()" style="display:none">Play Again</button>
+    </div>
+  </div>
+</div></section>
+
+<!-- FINAL -->
+<section class="blk" id="final"><div class="wrap">
+  <div class="sec-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM4 5h3M17 5h3"/></svg>Prove It</div>
+  <h2 class="sec-title">Final Quiz</h2>
+  <p class="sec-desc">Ten questions across the whole orientation. Aim for 8 or better. Nothing is recorded — this is just for you.</p>
+  <div class="final-grid">
+    <div class="check" id="final-list" style="margin-top:0"></div>
+    <div class="final-score">
+      <div class="big" id="f-big">0<span style="font-size:24px;color:var(--muted)">/10</span></div>
+      <div class="lbl">Correct</div>
+      <div class="verdict" id="f-verdict"></div>
+      <div style="margin-top:14px"><button class="btn ghost" onclick="location.reload()">Reset Everything</button></div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <b>Martam Construction Inc.</b> — New-Hire Safety Orientation · Produced by <b>SafetyCheck Inc.</b>
+  <p class="disc">This interactive orientation supports Martam's general safety training. It does not replace site-specific instruction, hands-on training, or your supervisor's direction. When in doubt, ask. See it, say it — and let's all get home safe.</p>
+</div></footer>
+
+<script>
+/* ---------- DATA ---------- */
+var CH = [
+ [0,"Welcome to Martam"],[34,"General Safety Requirements"],[75,"Personal Protective Equipment"],
+ [142,"Fall Protection"],[194,"Electrical & Power Tools"],[243,"Fire Prevention"],
+ [276,"Ladders & Material Handling"],[319,"Flagging & Traffic"],[354,"Housekeeping"],
+ [379,"First Aid & Injury Reporting"],[437,"Acknowledgment & Close"]
+];
+var CLIMG = "https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1000/martam-safety/";
+
+var MODS = [
+ {id:"m1",label:"01 · General Safety",title:"General Safety Requirements",img:"IMG-01-1_scan-site",cap:"Study the job before you start.",
+  kp:[["Study every job first","Look at the task, tools, equipment, and ground. Ten seconds of thinking beats ten weeks of healing."],
+      ["Obey every warning sign","Signs, labels, and barricades are there because someone learned the hard way."],
+      ["See it, say it","Report unsafe conditions, damaged gear, and near misses to your supervisor right away."]]},
+ {id:"m2",label:"02 · PPE",title:"Personal Protective Equipment",img:"ppe-flatlay",cap:"Your last line of defense — head to toe.",
+  kp:[["Hard hat, always","Worn at all times on every project. Non-conductive, with your name and the Martam logo."],
+      ["Protect eyes, ears, lungs","Safety glasses for debris; goggles for splash; face shield over glasses for grinding. Plugs/muffs in noise. Respirators for dust and fumes."],
+      ["Hands and feet","Work gloves for the rough stuff; steel-toe boots for jackhammers, tampers, and heavy equipment."],
+      ["Dress for the job","Shirts with a 4-inch sleeve minimum, long pants. No shorts, no tank tops."]]},
+ {id:"m3",label:"03 · Fall Protection",title:"Fall Protection",img:"IMG-03-1_harness",cap:"Six feet up with nothing to catch you is too high.",
+  kp:[["6 feet = tie off","At 6 feet or more above the ground, fall protection is mandatory."],
+      ["Guardrails first","A solid barrier on open edges is the first choice when it's feasible."],
+      ["Harness, never a belt","When guardrails aren't possible, use a full-body harness and lanyard on an approved anchor. No safety belts, ever."]]},
+ {id:"m4",label:"04 · Electrical & Tools",title:"Electrical & Power Tools",img:"IMG-04-1_inspect-cord",cap:"Inspect before you trust it.",
+  kp:[["Inspect every time","Check the cord, plug, guards, and casing before each use."],
+      ["Damaged? Tag it out","Take defective tools out of service and tag them for repair — don't 'just finish this one cut.'"],
+      ["Guards stay on","Grounded or double-insulated only. Keep guards in place; qualified electricians handle repairs."]]},
+ {id:"m5",label:"05 · Fire",title:"Fire Prevention",img:"IMG-05-1_extinguisher",cap:"Know the plan before you need it.",
+  kp:[["Know three things","Where the emergency numbers, the extinguishers, and your evacuation routes are."],
+      ["Use an extinguisher only if…","You're trained and it's a small, controllable fire."],
+      ["Bigger than that? Get out","Get everyone out and report it. No fire is worth your life."]]},
+ {id:"m6",label:"06 · Ladders & Lifting",title:"Ladders & Material Handling",img:"IMG-06-1_ladder-angle",cap:"Climb smart, lift smarter.",
+  kp:[["Ladder set-up","Extension ladders at about 4:1, extending 3 ft above the landing. Step ladders: open fully, lock spreaders, stay off the top two steps."],
+      ["Lift with your legs","Knees bent, back straight, load close, no twisting. Get help or a hoist for heavy loads."],
+      ["Stack it safe","Mind load limits and keep materials stable so nothing shifts or topples."]]},
+ {id:"m7",label:"07 · Flagging",title:"Flagging & Traffic",img:"IMG-07-1_flagger",cap:"Never turn your back on traffic.",
+  kp:[["Trained first","You're trained before you flag — every time."],
+      ["Stay visible","Hi-vis on, good positioning, and an escape path — especially in low light or bad weather."],
+      ["Face the traffic","Never turn your back on oncoming vehicles. A distracted driver won't watch out for you."]]},
+ {id:"m8",label:"08 · Housekeeping",title:"Housekeeping",img:"IMG-08-1_orderly-site",cap:"A clean site is a safe site.",
+  kp:[["Keep it orderly","Clutter causes trips, slips, and fires. Trash goes in approved containers."],
+      ["Handle scrap safely","Pull or bend over protruding nails before they find a hand or foot."]]},
+ {id:"m9",label:"09 · First Aid & Reporting",title:"First Aid & Injury Reporting",img:"IMG-09-3_sign-log",cap:"Report it — every time.",
+  kp:[["Scene safe first","Make sure the area is safe before helping — don't become the second victim. Call for help on the radio."],
+      ["Report everything","Every injury, immediately, no matter how small — and the moment you realize a later one."],
+      ["Sign the log","Sign the Accident/Injury log every shift and cooperate with any investigation."]]}
+];
+
+var MODQ = {
+ m1:[{t:"tf",id:"m1a",q:"If you spot an unsafe condition, it's fine to wait and let someone else report it.",a:false,ex:"Report it to your supervisor right away — see it, say it. Don't assume the next person will catch it."},
+     {t:"mc",id:"m1b",q:"Before you start any task, the first thing to do is:",o:[["Work as fast as possible to save time",false],["Study the task, tools, equipment, and work area for hazards",true],["Take down the warning signs",false]],ex:"Study the job first — understanding the hazards lets you plan safe work."}],
+ m2:[{t:"mc",id:"m2a",q:"Hard hats must be worn:",o:[["Only when working at heights",false],["At all times, on every project",true],["Only when a supervisor is watching",false]],ex:"Required at all times on every project — non-conductive, with your name and the Martam logo."},
+     {t:"tf",id:"m2b",q:"When grinding, safety glasses alone are enough — you don't need a face shield.",a:false,ex:"For grinding, chipping, or cut-off saws, wear a face shield OVER your safety glasses."}],
+ m3:[{t:"mc",id:"m3a",q:"Fall protection is mandatory when working at or above:",o:[["4 feet",false],["6 feet",true],["10 feet",false]],ex:"At 6 feet or more above the ground, fall protection is mandatory."},
+     {t:"tf",id:"m3b",q:"A safety belt is an acceptable alternative to a full-body harness.",a:false,ex:"No safety belts — ever. Full-body harness and lanyard on an approved anchor only."}],
+ m4:[{t:"tf",id:"m4a",q:"If a tool's cord is damaged, you can keep using it as long as you're careful.",a:false,ex:"Take a damaged tool out of service and tag it for repair. Defective tools cause shocks and fires."},
+     {t:"mc",id:"m4b",q:"Tool guards should be:",o:[["Removed to work faster",false],["Left in place — never removed or modified",true],["Adjusted however you like",false]],ex:"Guards protect you from moving parts. Keep them in place; never modify or remove them."}],
+ m5:[{t:"mc",id:"m5a",q:"You should use a fire extinguisher only when:",o:[["Any fire breaks out, no matter the size",false],["You're trained AND it's a small, controllable fire",true],["You're the closest person to it",false]],ex:"Only if trained and it's small and controllable. Otherwise get out, get everyone out, and report it."},
+     {t:"tf",id:"m5b",q:"On day one you should know where the emergency numbers and fire extinguishers are.",a:true,ex:"Know your emergency numbers, extinguisher locations, and evacuation routes before you ever need them."}],
+ m6:[{t:"mc",id:"m6a",q:"Extension ladders should be set at about a:",o:[["1:1 ratio",false],["4:1 ratio",true],["10:1 ratio",false]],ex:"About 4:1, extending at least 3 feet above the landing, on firm level ground."},
+     {t:"tf",id:"m6b",q:"It's okay to stand on the top two steps of a stepladder if you're careful.",a:false,ex:"Never stand on the top or second step from the top. Open it fully and lock the spreaders."},
+     {t:"mc",id:"m6c",q:"The correct way to lift a heavy load is:",o:[["Bend at the waist and lift with your back",false],["Bend your knees, keep your back straight, load close",true],["Twist as you lift to move it faster",false]],ex:"Legs do the work — knees bent, back straight, load close, no twisting."}],
+ m7:[{t:"mc",id:"m7a",q:"The rule you never break when flagging:",o:[["Never turn your back on traffic",true],["Always stand in the middle of the lane",false],["Wave vehicles through quickly",false]],ex:"Always face oncoming traffic so you can see trouble coming and move."},
+     {t:"tf",id:"m7b",q:"You need training before you flag traffic.",a:true,ex:"Flagging requires training before you enter the work zone — every time."}],
+ m8:[{t:"tf",id:"m8a",q:"A nail sticking out of a board can be left alone if you're busy.",a:false,ex:"Pull it or bend it over before it finds someone's hand or foot."},
+     {t:"mc",id:"m8b",q:"Good housekeeping reduces:",o:[["Only paperwork",false],["Trips, slips, and fire hazards",true],["The need for PPE",false]],ex:"A clean, orderly site cuts trips, slips, and fires."}],
+ m9:[{t:"tf",id:"m9a",q:"Minor injuries like a small scratch don't need to be reported.",a:false,ex:"Report every injury immediately, no matter how small — a scratch today can be an infection next week."},
+     {t:"mc",id:"m9b",q:"Before helping an injured coworker, you should first:",o:[["Rush in immediately",false],["Make sure the area is safe so you don't become the second victim",true],["Move the person right away",false]],ex:"Make sure the scene is safe first, then get help on the radio."},
+     {t:"tf",id:"m9c",q:"You must sign the Accident/Injury log at the end of every shift.",a:true,ex:"Sign the log every shift and cooperate fully with any investigation."}]
+};
+
+var FLASH = [
+ ["Hard hat rule?","Worn at <b>all times, every project</b>. Non-conductive, with your name + Martam logo."],
+ ["Fall protection height?","<b>6 feet</b> or more above ground = tie off."],
+ ["Extension ladder angle?","About <b>4:1</b>; extend <b>3 ft</b> above the landing."],
+ ["Damaged tool?","Take it out of service and <b>tag it for repair</b>."],
+ ["Fire extinguisher — when?","Only if <b>trained</b> and it's a <b>small, controllable</b> fire."],
+ ["Flagging golden rule?","<b>Never turn your back on traffic.</b>"],
+ ["Lifting technique?","Knees bent, <b>back straight</b>, load close, no twisting."],
+ ["Reporting injuries?","<b>All of them, immediately</b> — even minor ones."],
+ ["Safety belts?","<b>Never.</b> Full-body harness only."],
+ ["Eye protection for grinding?","<b>Face shield + safety glasses.</b>"],
+ ["Hearing protection?","In all high-noise areas — <b>hearing doesn't grow back</b>."],
+ ["See a hazard?","<b>See it, say it</b> — tell your supervisor right away."]
+];
+
+var MATCH = [
+ {item:"Hard Hat",ans:"Falling objects & overhead impact"},
+ {item:"Safety Glasses",ans:"Flying debris & dust"},
+ {item:"Ear Plugs",ans:"High noise"},
+ {item:"Work Gloves",ans:"Cuts & abrasions"},
+ {item:"Steel-Toe Boots",ans:"Heavy, crushing loads"},
+ {item:"Full-Body Harness",ans:"Falls from height"}
+];
+
+var SCEN = [
+ {t:"mc",id:"s1",q:"You pick up a grinder and notice the safety guard is missing. What do you do?",o:[["Use it carefully just this once",false],["Take it out of service, tag it, and tell your supervisor",true],["Remove the other guards so it's balanced",false]],ex:"Never use a tool with a missing guard. Tag it out and report it."},
+ {t:"mc",id:"s2",q:"A coworker slips and is hurt at the bottom of a trench. Your FIRST move is:",o:[["Jump straight in to help",false],["Make sure the area is safe, then call for help on the radio",true],["Move them immediately",false]],ex:"Make sure the scene is safe first — you can't help if you become the second victim."},
+ {t:"mc",id:"s3",q:"This morning you realize you tweaked your back on the job yesterday. You should:",o:[["Wait to see if it gets worse",false],["Report the injury now, as soon as you're aware of it",true],["Only report it if you miss work",false]],ex:"Report an injury the moment you become aware of it — even after the fact."},
+ {t:"mc",id:"s4",q:"It's getting dark and starting to rain while you flag traffic. You should:",o:[["Take your vest off so it doesn't get wet",false],["Keep your hi-vis on, stay visible, and keep facing traffic",true],["Turn around to watch the crew behind you",false]],ex:"Low light and bad weather make visibility critical — hi-vis on, face the traffic."}
+];
+
+var BLITZ = [
+ ["Hard hats are required at all times, every project.",true],
+ ["Safety belts are fine for fall arrest.",false],
+ ["Report every injury, even minor ones.",true],
+ ["You can use a tool with a damaged cord if you're careful.",false],
+ ["Six feet up or more means you tie off.",true],
+ ["It's okay to skip flagging training on small jobs.",false],
+ ["Keep tool guards in place — never remove them.",true],
+ ["You should fight any fire, no matter how big.",false],
+ ["Never turn your back on traffic.",true],
+ ["Leave protruding nails alone if you're in a hurry.",false]
+];
+
+var FINAL = [
+ {q:"Fall protection is mandatory at or above:",o:[["4 ft",false],["6 ft",true],["12 ft",false],["20 ft",false]]},
+ {q:"Hard hats are required:",o:[["At all times on every project",true],["Only at heights",false],["Only when told",false],["Only for visitors",false]]},
+ {q:"A damaged power tool should be:",o:[["Used carefully",false],["Taken out of service and tagged",true],["Repaired by anyone handy",false],["Left for the next crew",false]]},
+ {q:"Extension ladders are set at about:",o:[["4:1",true],["1:1",false],["2:1",false],["10:1",false]]},
+ {q:"The golden rule of flagging:",o:[["Never turn your back on traffic",true],["Wave cars through fast",false],["Stand in the lane center",false],["Skip the vest in daylight",false]]},
+ {q:"Correct lifting technique:",o:[["Bend knees, back straight, load close",true],["Bend at the waist",false],["Twist while lifting",false],["Lift fast to get it over with",false]]},
+ {q:"Use a fire extinguisher only when:",o:[["Trained and the fire is small & controllable",true],["Any time there is fire",false],["You're nearest to it",false],["A supervisor is present",false]]},
+ {q:"Before helping an injured coworker, first:",o:[["Make sure the area is safe",true],["Move them",false],["Finish your task",false],["Wait for a manager",false]]},
+ {q:"For grinding, wear:",o:[["A face shield over safety glasses",true],["Safety glasses only",false],["No eye protection",false],["Sunglasses",false]]},
+ {q:"Injuries should be reported:",o:[["Immediately, no matter how small",true],["Only if serious",false],["At the end of the week",false],["Only if you miss work",false]]}
+];
+
+/* ---------- SCORE ---------- */
+var answered={}, correct={}, TOTAL=0;
+function fmtTime(s){return Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0");}
+function grade(id,ok,onDone){
+  if(answered[id])return;
+  answered[id]=true; if(ok)correct[id]=true;
+  var a=Object.keys(answered).length, c=Object.keys(correct).length;
+  document.getElementById("score").textContent=c;
+  document.getElementById("prog").style.width=(a/TOTAL*100)+"%";
+  if(onDone)onDone();
+}
+
+/* ---------- QUESTION RENDERERS ---------- */
+function esc(s){return s;}
+function makeMC(item,onGrade){
+  var b=document.createElement("div"); b.className="qb";
+  var letters=["A","B","C","D"];
+  var h='<div class="qq">'+item.q+'</div>';
+  item.o.forEach(function(o,i){ h+='<button class="opt" data-i="'+i+'"><span class="let">'+letters[i]+'</span><span>'+o[0]+'</span></button>'; });
+  h+='<div class="fb"></div>'; b.innerHTML=h;
+  var opts=b.querySelectorAll(".opt"), fb=b.querySelector(".fb"), done=false;
+  opts.forEach(function(btn){ btn.addEventListener("click",function(){
+    if(done)return; done=true;
+    var i=+btn.dataset.i, ok=item.o[i][1];
+    opts.forEach(function(o,j){ o.classList.add("dim");
+      if(item.o[j][1])o.classList.add("correct");
+    });
+    btn.classList.remove("dim");
+    if(!ok)btn.classList.add("wrong");
+    fb.className="fb show "+(ok?"good":"bad");
+    fb.innerHTML='<b>'+(ok?"Correct — ":"Not quite — ")+'</b>'+item.ex;
+    if(onGrade)onGrade(ok);
+  });});
+  return b;
+}
+function makeTF(item,onGrade){
+  var b=document.createElement("div"); b.className="qb";
+  b.innerHTML='<div class="qq">'+item.q+'</div><div class="tf-row"><button class="tf" data-v="1">True</button><button class="tf" data-v="0">False</button></div><div class="fb"></div>';
+  var btns=b.querySelectorAll(".tf"), fb=b.querySelector(".fb"), done=false;
+  btns.forEach(function(btn){ btn.addEventListener("click",function(){
+    if(done)return; done=true;
+    var choice=btn.dataset.v==="1", ok=(choice===item.a);
+    btns.forEach(function(x){ var v=x.dataset.v==="1"; if(v===item.a)x.classList.add("correct"); });
+    if(!ok)btn.classList.add("wrong");
+    fb.className="fb show "+(ok?"good":"bad");
+    fb.innerHTML='<b>'+(ok?"Correct — ":"Not quite — ")+'</b>'+item.ex;
+    if(onGrade)onGrade(ok);
+  });});
+  return b;
+}
+function renderQuestion(host,item,onGrade){ host.appendChild(item.t==="tf"?makeTF(item,onGrade):makeMC(item,onGrade)); }
+
+/* ---------- BUILD CHAPTERS ---------- */
+(function(){
+  var list=document.getElementById("chapter-list");
+  CH.forEach(function(c,i){
+    var end=(i<CH.length-1)?CH[i+1][0]:"inf";
+    var btn=document.createElement("button");
+    btn.className="chapter"; btn.dataset.start=c[0]; btn.dataset.end=end;
+    btn.innerHTML='<span class="ch-n">'+String(i).padStart(2,"0")+'</span><span class="ch-time">'+fmtTime(c[0])+'</span><span class="ch-title">'+c[1]+'</span>';
+    list.appendChild(btn);
+  });
+})();
+
+/* ---------- VIDEO ENGINE (from hamstra template) ---------- */
+function initVideoBlock(root){
+  var vid=root.querySelector("video"); if(!vid)return;
+  var chapters=Array.prototype.slice.call(root.querySelectorAll(".chapter"));
+  var blockStart=parseFloat(root.dataset.start||"0");
+  var chapterEnd=null, internalSeek=false;
+  function seekTo(t){ internalSeek=true; try{vid.currentTime=t;}catch(e){} }
+  chapters.forEach(function(btn){ btn.addEventListener("click",function(){
+    var start=parseFloat(btn.dataset.start);
+    chapterEnd=btn.dataset.end==="inf"?null:parseFloat(btn.dataset.end);
+    chapters.forEach(function(c){c.classList.remove("active");}); btn.classList.add("active");
+    var begin=function(){ seekTo(start); vid.play(); };
+    if(vid.readyState>=1)begin(); else vid.addEventListener("loadedmetadata",begin,{once:true});
+    root.scrollIntoView({behavior:"smooth",block:"nearest"});
+  });});
+  vid.addEventListener("timeupdate",function(){
+    if(chapterEnd!=null && vid.currentTime>=chapterEnd){ vid.pause(); chapterEnd=null; }
+    var t=vid.currentTime, active=null;
+    chapters.forEach(function(c){ var s=parseFloat(c.dataset.start), e=c.dataset.end==="inf"?Infinity:parseFloat(c.dataset.end); if(t>=s&&t<e)active=c; });
+    chapters.forEach(function(c){ c.classList.toggle("active",c===active); });
+  });
+  vid.addEventListener("seeking",function(){ if(internalSeek){internalSeek=false;return;} chapterEnd=null; });
+}
+
+/* ---------- BUILD MODULES ---------- */
+(function(){
+  var host=document.getElementById("modules"), mnav=document.getElementById("mnav-inner");
+  MODS.forEach(function(m){
+    TOTAL+=(MODQ[m.id]||[]).length;
+    var sec=document.createElement("section"); sec.className="blk"; sec.id=m.id;
+    var kph=m.kp.map(function(k){return '<div class="kp"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5 9-11"/></svg></div><div><b>'+k[0]+'</b><p>'+k[1]+'</p></div></div>';}).join("");
+    sec.innerHTML=
+      '<div class="wrap">'+
+        '<div class="sec-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7z"/></svg>Module</div>'+
+        '<h2 class="sec-title">'+m.title+'</h2>'+
+        '<div class="mod-grid">'+
+          '<div><div class="keypoints">'+kph+'</div><div class="check" id="chk-'+m.id+'"><div class="check-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>Knowledge Check</div></div></div>'+
+          '<div class="mod-media"><img loading="lazy" src="'+CLIMG+m.img+'" alt="'+m.title+'"><div class="cap">'+m.cap+'</div></div>'+
+        '</div>'+
+      '</div>';
+    host.appendChild(sec);
+    var chk=sec.querySelector("#chk-"+m.id), qids=(MODQ[m.id]||[]).map(function(q){return q.id;});
+    (MODQ[m.id]||[]).forEach(function(q){ renderQuestion(chk,q,function(ok){ grade(q.id,ok,function(){
+      if(qids.every(function(x){return answered[x];})){ var tab=document.querySelector('.mtab[data-t="'+m.id+'"]'); if(tab)tab.classList.add("done"); }
+    });}); });
+    var tab=document.createElement("button"); tab.className="mtab"; tab.dataset.t=m.id; tab.textContent=m.label;
+    tab.onclick=function(){ document.getElementById(m.id).scrollIntoView({behavior:"smooth"}); };
+    mnav.appendChild(tab);
+  });
+  // extra nav tabs
+  [["watch","▶ Watch"],["flashcards","Flashcards"],["match","Match"],["scenarios","Scenarios"],["blitz","Blitz"],["final","Final Quiz"]].forEach(function(t){
+    var b=document.createElement("button"); b.className="mtab"; b.textContent=t[1];
+    b.onclick=function(){ document.getElementById(t[0]).scrollIntoView({behavior:"smooth"}); };
+    if(t[0]==="watch")document.getElementById("mnav-inner").insertBefore(b,document.getElementById("mnav-inner").firstChild);
+    else document.getElementById("mnav-inner").appendChild(b);
+  });
+})();
+
+/* ---------- FLASHCARDS ---------- */
+(function(){
+  var g=document.getElementById("fc-grid");
+  FLASH.forEach(function(f){
+    var d=document.createElement("div"); d.className="flip";
+    d.innerHTML='<div class="flip-in"><div class="flip-f"><div class="q">'+f[0]+'</div><div class="hint">Tap to flip</div></div><div class="flip-b"><div class="a">'+f[1]+'</div></div></div>';
+    d.addEventListener("click",function(){ d.classList.toggle("flipped"); });
+    g.appendChild(d);
+  });
+})();
+
+/* ---------- DRAG MATCH ---------- */
+var dragKey=null;
+(function(){
+  var chips=document.getElementById("chips"), zones=document.getElementById("zones");
+  var shuffled=MATCH.slice().sort(function(){return Math.random()-0.5;});
+  shuffled.forEach(function(m){
+    var c=document.createElement("div"); c.className="chip"; c.textContent=m.item; c.draggable=true; c.dataset.item=m.item;
+    c.addEventListener("dragstart",function(e){ dragKey=m.item; e.dataTransfer.setData("text",m.item); });
+    chips.appendChild(c);
+  });
+  MATCH.forEach(function(m){
+    var z=document.createElement("div"); z.className="zone"; z.dataset.answer=m.item;
+    z.innerHTML='<div class="zl">'+m.ans+'</div><div class="slot">Drop here</div>';
+    z.addEventListener("dragover",function(e){ e.preventDefault(); z.classList.add("over"); });
+    z.addEventListener("dragleave",function(){ z.classList.remove("over"); });
+    z.addEventListener("drop",function(e){ e.preventDefault(); z.classList.remove("over");
+      var key=dragKey||e.dataTransfer.getData("text"); if(!key)return;
+      var slot=z.querySelector(".slot");
+      // free any chip already here
+      if(z.dataset.filled){ var prev=document.querySelector('.chip[data-item="'+z.dataset.filled+'"]'); if(prev)prev.classList.remove("used"); }
+      slot.textContent=key; slot.classList.add("filled"); z.dataset.filled=key; z.classList.remove("correct","wrong");
+      var chip=document.querySelector('.chip[data-item="'+key+'"]'); if(chip)chip.classList.add("used");
+    });
+    zones.appendChild(z);
+  });
+})();
+function checkMatch(){
+  var zones=document.querySelectorAll("#zones .zone"), right=0;
+  zones.forEach(function(z){ var ok=z.dataset.filled===z.dataset.answer;
+    z.classList.remove("correct","wrong"); z.classList.add(ok?"correct":"wrong"); if(ok)right++; });
+  var msg=document.getElementById("match-msg");
+  msg.textContent=right+" / "+MATCH.length+" correct"; msg.style.color=(right===MATCH.length)?"var(--green)":"var(--gold)";
+}
+function resetMatch(){
+  document.querySelectorAll("#zones .zone").forEach(function(z){ z.classList.remove("correct","wrong"); z.removeAttribute("data-filled"); var s=z.querySelector(".slot"); s.textContent="Drop here"; s.classList.remove("filled"); });
+  document.querySelectorAll("#chips .chip").forEach(function(c){ c.classList.remove("used"); });
+  document.getElementById("match-msg").textContent="";
+}
+
+/* ---------- SCENARIOS ---------- */
+(function(){
+  var host=document.getElementById("scen-list");
+  var head=document.createElement("div"); head.className="check-h";
+  head.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>Pick the safest move';
+  host.appendChild(head);
+  TOTAL+=SCEN.length;
+  SCEN.forEach(function(s){ renderQuestion(host,s,function(ok){ grade(s.id,ok); }); });
+})();
+
+/* ---------- BLITZ ---------- */
+var bIdx=0,bScore=0,bStreak=0,bOrder=[];
+function startBlitz(){
+  bIdx=0;bScore=0;bStreak=0; bOrder=BLITZ.map(function(_,i){return i;});
+  document.getElementById("b-restart").style.display="none";
+  document.getElementById("b-true").disabled=false; document.getElementById("b-false").disabled=false;
+  document.getElementById("b-score").textContent="0"; document.getElementById("b-streak").textContent="";
+  showBlitz();
+}
+function showBlitz(){
+  var q=BLITZ[bOrder[bIdx]];
+  document.getElementById("b-num").textContent=(bIdx+1);
+  document.getElementById("b-q").textContent=q[0];
+  document.getElementById("b-bar").style.width=(bIdx/BLITZ.length*100)+"%";
+}
+function blitzAns(v){
+  if(bIdx>=BLITZ.length)return;
+  var q=BLITZ[bOrder[bIdx]], ok=(v===q[1]), st=document.getElementById("b-streak");
+  if(ok){ bScore++; bStreak++; st.style.color="var(--hivis)"; st.textContent=bStreak>1?("🔥 "+bStreak+" in a row!"):"✓ Correct"; }
+  else { bStreak=0; st.style.color="var(--wrong)"; st.textContent="✗ "+(q[1]?"That's TRUE":"That's FALSE"); }
+  document.getElementById("b-score").textContent=bScore;
+  bIdx++;
+  if(bIdx>=BLITZ.length){
+    document.getElementById("b-bar").style.width="100%";
+    document.getElementById("b-q").textContent="Done! You scored "+bScore+" / "+BLITZ.length+(bScore===BLITZ.length?" — perfect run! 🏆":".");
+    document.getElementById("b-num").textContent=BLITZ.length;
+    document.getElementById("b-true").disabled=true; document.getElementById("b-false").disabled=true;
+    document.getElementById("b-restart").style.display="inline-block";
+  } else { setTimeout(showBlitz,650); }
+}
+startBlitz();
+
+/* ---------- FINAL QUIZ ---------- */
+(function(){
+  var host=document.getElementById("final-list");
+  var head=document.createElement("div"); head.className="check-h";
+  head.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/></svg>Final Quiz — 10 Questions';
+  host.appendChild(head);
+  var fCorrect=0,fDone=0;
+  FINAL.forEach(function(q,i){
+    var item={t:"mc",id:"f"+i,q:(i+1)+". "+q.q,o:q.o,ex:""};
+    // custom feedback: no ex line, just correct/incorrect
+    var block=makeMC({t:"mc",id:item.id,q:item.q,o:q.o,ex:"the highlighted answer is correct."},function(ok){
+      fDone++; if(ok)fCorrect++;
+      document.getElementById("f-big").innerHTML=fCorrect+'<span style="font-size:24px;color:var(--muted)">/10</span>';
+      grade(item.id,ok);
+      if(fDone===FINAL.length){
+        var v=document.getElementById("f-verdict");
+        if(fCorrect>=8){ v.className="verdict pass"; v.textContent="✓ You passed — nice work. Let's get to work safe."; }
+        else { v.className="verdict fail"; v.textContent="Review the modules and try again — aim for 8+."; }
+      }
+    });
+    host.appendChild(block);
+  });
+  TOTAL+=FINAL.length;
+  document.getElementById("scoremax").textContent=TOTAL;
+})();
+document.getElementById("scoremax").textContent=TOTAL;
+
+/* init video blocks */
+document.querySelectorAll(".video-block").forEach(initVideoBlock);
+
+/* shrink header logo on scroll */
+(function(){
+  var nav=document.getElementById("topnav");
+  function onScroll(){ nav.classList.toggle("shrink", window.scrollY>36); }
+  onScroll(); window.addEventListener("scroll",onScroll,{passive:true});
+})();
+</script>
+
+<!-- ===== Admin entry: discreet badge → slide-in internal-links panel =====
+     Real access control is the Netlify edge gate (netlify/edge-functions/gate.ts,
+     driven by the SITE_PASSWORD env var). This panel is internal navigation only. -->
+<div id="adm"><button id="adm-btn" type="button" aria-label="Admin access" aria-haspopup="dialog" aria-expanded="false">A</button></div>
+<div id="adm-scrim" hidden></div>
+<aside id="adm-panel" role="dialog" aria-modal="true" aria-label="Admin links" aria-hidden="true">
+  <div class="adm-panel-head">
+    <div class="adm-panel-brand"><span class="adm-eyebrow">Martam &middot; SafetyCheck</span><h3>Admin</h3></div>
+    <button id="adm-panel-close" type="button" aria-label="Close admin panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <nav class="adm-links">
+    <a href="status.html">
+      <span class="adm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M9 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3"/><path d="M8 12h8M8 16h5"/></svg></span>
+      <span class="adm-txt"><b>Status &amp; Build Log</b><small>Project status, decisions, activity</small></span>
+    </a>
+    <a href="vo-script.html">
+      <span class="adm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span>
+      <span class="adm-txt"><b>VO Script</b><small>11-chapter teleprompter script</small></span>
+    </a>
+  </nav>
+  <div class="adm-panel-foot">
+    <button id="adm-lock-out" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>Lock &amp; sign out</button>
+  </div>
+</aside>
+<script>
+(function(){
+  var btn=document.getElementById('adm-btn'); if(!btn) return;
+  var panel=document.getElementById('adm-panel'),scrim=document.getElementById('adm-scrim'),
+      panelClose=document.getElementById('adm-panel-close'),signOut=document.getElementById('adm-lock-out');
+  function openPanel(){scrim.hidden=false;panel.classList.add('open');panel.setAttribute('aria-hidden','false');btn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+  function closePanel(){panel.classList.remove('open');scrim.hidden=true;panel.setAttribute('aria-hidden','true');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+  btn.addEventListener('click',function(e){e.stopPropagation();openPanel();});
+  panelClose.addEventListener('click',closePanel);
+  scrim.addEventListener('click',closePanel);
+  signOut.addEventListener('click',function(){window.location.href='?logout=1';});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('open'))closePanel();});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Martam Safety Orientation — VO Script</title>
+<style>
+  :root{
+    --martam-red:#E5231F;
+    --martam-red-dark:#B81A17;
+    --ink:#16181d;
+    --muted:#6c7080;
+    --faint:#9aa0ae;
+    --line:#e6e8ee;
+    --bg:#f4f5f8;
+    --card:#ffffff;
+    --note-bg:#fbf7ee;
+    --note-line:#ecdcb6;
+    --note-ink:#8a6d1f;
+    --read-size:1.62rem;   /* controlled by JS */
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+  /* Header */
+  header{background:linear-gradient(160deg,#232428,#141519);color:#fff;padding:30px 0 26px;border-bottom:4px solid var(--martam-red)}
+  .brandrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .wordmark{font-weight:800;letter-spacing:.5px;font-size:22px;display:inline-flex;align-items:flex-end;gap:6px}
+  .wordmark .m{background:var(--martam-red);color:#fff;padding:5px 8px;border-radius:5px;line-height:1}
+  .wordmark .c{color:#e9eaee;font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding-bottom:2px}
+  .tag{margin-left:auto;font-size:12.5px;color:#aeb2bd;text-align:right}
+  .tag strong{color:#fff}
+  h1{font-size:24px;margin:18px 0 6px;font-weight:800;letter-spacing:-.3px}
+  .sub{color:#c7cad3;font-size:14px;margin:0}
+  .stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .stat{font-size:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#eef0f4;padding:5px 10px;border-radius:999px}
+
+  /* Sticky control bar */
+  .controls{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(20,22,28,.05)}
+  .controls .inner{max-width:820px;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);padding:7px 12px;border-radius:9px;cursor:pointer;user-select:none}
+  .btn:hover{border-color:#cfd3dd}
+  .btn svg{width:16px;height:16px}
+  .btn.active{background:var(--martam-red);border-color:var(--martam-red);color:#fff}
+  .btn.active svg{color:#fff}
+  .sizer{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+  .sizer button{border:0;background:#fff;font-size:15px;font-weight:700;width:34px;height:34px;cursor:pointer;color:var(--ink)}
+  .sizer button:hover{background:#f2f3f6}
+  .sizer span{font-size:11.5px;color:var(--muted);padding:0 8px;min-width:74px;text-align:center}
+  .spacer{flex:1}
+  select.jump{font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);max-width:210px}
+
+  /* How to read */
+  .howto{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--martam-red);border-radius:12px;padding:16px 18px;margin:22px 0 8px;font-size:14px;color:var(--muted)}
+  .howto b{color:var(--ink)}
+  .howto ul{margin:8px 0 0;padding-left:18px}
+  .howto li{margin:4px 0}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12.5px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:14px;height:14px;border-radius:4px;display:inline-block}
+
+  /* Chapter */
+  .chapter{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 30px 30px;margin:20px 0;box-shadow:0 1px 2px rgba(20,22,28,.04),0 10px 26px rgba(20,22,28,.05)}
+  .chhead{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:6px}
+  .chnum{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--martam-red);padding:4px 8px;border-radius:7px}
+  .chttl{font-size:19px;font-weight:800;letter-spacing:-.2px}
+  .chmeta{margin-left:auto;font-size:12px;color:var(--faint);white-space:nowrap}
+  .titlecard{font-size:13px;color:var(--muted);margin:10px 0 2px}
+  .titlecard b{color:var(--martam-red-dark)}
+
+  /* Narration — the read-aloud text */
+  .narration{margin-top:16px}
+  .narration p{font-size:var(--read-size);line-height:1.5;margin:0 0 .85em;color:var(--ink);font-weight:450}
+  .narration p.lead{font-weight:700}
+
+  /* Production notes */
+  .prod{margin-top:16px;background:var(--note-bg);border:1px solid var(--note-line);border-radius:11px;padding:12px 15px}
+  .prod .plabel{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--note-ink);margin-bottom:8px}
+  .prod .plabel svg{width:14px;height:14px}
+  .prod ul{margin:0;padding-left:16px}
+  .prod li{font-size:13px;color:#7a6a3f;margin:3px 0;line-height:1.45}
+  .prod code{font-family:var(--mono);font-size:12px;background:#f1e6c9;padding:1px 5px;border-radius:4px;color:#6d5a24}
+  .prod .callout{display:inline-block;font-weight:800;letter-spacing:.5px;background:#16181d;color:#fff;padding:2px 8px;border-radius:5px;font-size:12px}
+
+  /* Reading mode hides production notes */
+  body.reading .prod{display:none}
+  body.reading .howto .prodhint{display:none}
+
+  footer{color:var(--faint);font-size:12.5px;text-align:center;padding:26px 0 60px}
+
+  @media print{
+    .controls,header .stats{display:none}
+    .prod{display:none}
+    .chapter{box-shadow:none;break-inside:avoid;border-color:#ccc}
+    body{background:#fff}
+  }
+  @media(max-width:640px){
+    .chapter{padding:20px 20px 24px}
+    .tag{margin-left:0;text-align:left}
+    :root{--read-size:1.35rem}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brandrow">
+      <span class="wordmark"><span class="m">MARTAM</span><span class="c">Construction&nbsp;Inc.</span></span>
+      <span class="tag">VO Script · <strong>Read-Ready</strong><br/>Produced by SafetyCheck Inc.</span>
+    </div>
+    <h1>New-Hire Safety Orientation — Voice-Over Script</h1>
+    <p class="sub">9:16 vertical · 11 modular micro-chapters · draft v1</p>
+    <div class="stats">
+      <span class="stat">≈ 1,500 words</span>
+      <span class="stat">≈ 11–13 min combined</span>
+      <span class="stat">~145–155 wpm</span>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="inner">
+    <button class="btn" id="readBtn" onclick="toggleReading()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span id="readLbl">Reading mode</span>
+    </button>
+    <div class="sizer" title="Text size">
+      <button onclick="setSize(-1)" aria-label="Smaller">A−</button>
+      <span id="sizeLbl">Text 100%</span>
+      <button onclick="setSize(1)" aria-label="Larger">A+</button>
+    </div>
+    <div class="spacer"></div>
+    <select class="jump" id="jump" onchange="jumpTo(this.value)">
+      <option value="">Jump to chapter…</option>
+    </select>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="howto">
+    <b>How to read this</b>
+    <ul>
+      <li><b>Read only the large black text.</b> Pause a beat at each paragraph break; let the important lines land.</li>
+      <li class="prodhint">The <b>amber Production boxes are for editing</b> — don't read them aloud. Hit <b>Reading mode</b> above to hide them entirely.</li>
+      <li>Pace ~145–155 wpm. Warm, grounded — like a foreman who respects you. Tone: <em>a 50-year family company that looks out for its people.</em></li>
+      <li>Each chapter is a separate clip <b>and</b> part of one combined video — a short breath of silence at the top and tail of each take helps the edit.</li>
+    </ul>
+    <div class="legend prodhint">
+      <span><span class="swatch" style="background:#16181d"></span> Large black text = <b>read aloud</b></span>
+      <span><span class="swatch" style="background:#e9d38f"></span> Amber box = <b>skip (editing notes)</b></span>
+    </div>
+  </div>
+
+  <!-- CH 00 -->
+  <section class="chapter" id="ch00">
+    <div class="chhead"><span class="chnum">CH 00</span><span class="chttl">Welcome to Martam</span><span class="chmeta">~40 sec</span></div>
+    <div class="titlecard">Title card: <b>“Welcome to the Family.”</b></div>
+    <div class="narration">
+      <p class="lead">Welcome to Martam.</p>
+      <p>For more than fifty years, this has been a family company — started by Tam and Maria Kutrovatz back in 1973, and still run by their family today.</p>
+      <p>When you put on that hi-vis vest, you become part of that family. And in this family, one rule comes before all the others: everybody goes home safe. Every shift. No exceptions.</p>
+      <p>That's what the next few minutes are really about. Not paperwork — the real habits that keep you, and the person working next to you, out of harm's way.</p>
+      <p>Let's get into it.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 00.1</code> — Wide hero: Martam crew of 3–4 in hi-vis at an open utility trench, morning light, suburban treeline. Warm, proud, welcoming.</li>
+        <li>Callout @ “everybody goes home safe”: <span class="callout">EVERYBODY GOES HOME SAFE</span></li>
+        <li>Lower-third: <em>Martam Construction · Est. 1973</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CH 01 -->
+  <section class="chapter" id="ch01">
+    <div class="chhead"><span class="chnum">CH 01</span><span class="chttl">General Safety Requirements</span><span class="chmeta">~60 sec</span></div>
+    <div class="titlecard">Title card: <b>“Every Job, Every Time.”</b></div>
+    <div class="narration">
+      <p>Before you pick up a single tool, take a beat and study the job.</p>
+      <p>Look at the task, the tools, the equipment, and the ground around you. Where are the hazards? What's your plan if something goes sideways? Ten seconds of thinking beats ten weeks of healing.</p>
+      <p>Obey every warning sign, label, and barricade. They're not decoration — they're there because somebody, somewhere, learned the hard way.</p>
+      <p>And this is the big one: if you see something unsafe — damaged gear, a bad setup, a near miss — report it to your supervisor right away. Don't walk past it. Don't assume the next guy will catch it.</p>
+      <p>See it. Say it. That's how we fix small problems before they turn into injuries.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 01.1</code> — Worker pausing at trench edge, scanning the site before starting; excavator staged behind.</li>
+        <li><code>IMG 01.2</code> — Close on a posted warning sign / barricade tape on a Martam job.</li>
+        <li>Callout @ “See it. Say it.”: <span class="callout">SEE IT. SAY IT.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CH 02 -->
+  <section class="chapter" id="ch02">
+    <div class="chhead"><span class="chnum">CH 02</span><span class="chttl">Personal Protective Equipment</span><span class="chmeta">~90 sec</span></div>
+    <div class="titlecard">Title card: <b>“Your Last Line of Defense.”</b></div>
+    <div class="narration">
+      <p>Your PPE is the last thing standing between you and a bad day — so let's get it right, head to toe.</p>
+      <p>Start at the top. A hard hat, worn at all times, on every project. Non-conductive, with your name and the Martam logo on it. No exceptions.</p>
+      <p>Your eyes. Safety glasses any time there's dust, debris, or flying fragments. Goggles when you're dealing with chemical splash or torch cutting. And a face shield — over your glasses — for grinding, chipping, or cut-off saws.</p>
+      <p>Your ears. In high-noise areas, plugs or muffs, every time. Hearing doesn't grow back.</p>
+      <p>Your lungs. Dust masks or respirators whenever there are fumes, dust, or vapors in the air.</p>
+      <p>Your hands. Work gloves for the rough stuff, and the right specialty gloves for chemicals or heat.</p>
+      <p>And your feet. Sturdy leather work boots — steel-toe when you're running jackhammers, tampers, or heavy equipment.</p>
+      <p>One more thing, on clothing: shirts with at least a four-inch sleeve, and long pants. No shorts, no tank tops. Dress for the job — not the weather.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 02.1</code> — Head-to-toe hero of a Martam worker in full PPE, clean vertical composition.</li>
+        <li><code>IMG 02.2</code> — Detail shots: hard hat, safety glasses, gloves, steel-toe boots (2–4 tight shots).</li>
+        <li><code>IMG 02.3</code> — Worker with face shield + glasses at a grinding / cut-off task, sparks.</li>
+        <li>Callout @ “at all times”: <span class="callout">HARD HAT — ALWAYS</span></li>
+        <li>Callout @ “Hearing doesn't grow back”: <span class="callout">HEARING DOESN'T GROW BACK</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CH 03 -->
+  <section class="chapter" id="ch03">
+    <div class="chhead"><span class="chnum">CH 03</span><span class="chttl">Fall Protection</span><span class="chmeta">~75 sec</span></div>
+    <div class="titlecard">Title card: <b>“Six Feet Is Too High to Fall.”</b></div>
+    <div class="narration">
+      <p>Falls are one of the fastest ways to get seriously hurt on a site — so here's the line in the sand.</p>
+      <p>Any time you're working six feet or more above the ground, fall protection is mandatory. Not “if you feel like it.” Mandatory.</p>
+      <p>First choice is guardrails — a solid barrier on open sides, edges, and elevated surfaces, between you and the drop.</p>
+      <p>When guardrails aren't possible, you wear a full-body harness and lanyard, tied off to an approved anchor point. Moving along an elevated run? Use a static line so you stay tied off the whole way across.</p>
+      <p>And one hard rule: no safety belts. Ever. They cause more injury than they prevent — a full-body harness only.</p>
+      <p>Every site with heights has a fall-protection plan. Know it before you go up. Because six feet up, with nothing to catch you, is six feet too high.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 03.1</code> — Worker in full-body harness tied off on an elevated structure / edge.</li>
+        <li><code>IMG 03.2</code> — Guardrail system on an open edge, clean and correct.</li>
+        <li>Callout @ “six feet or more”: <span class="callout">6 FT = TIE OFF</span></li>
+        <li>Callout @ “no safety belts”: <span class="callout">FULL-BODY HARNESS ONLY</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CH 04 -->
+  <section class="chapter" id="ch04">
+    <div class="chhead"><span class="chnum">CH 04</span><span class="chttl">Electrical &amp; Power Tools</span><span class="chmeta">~75 sec</span></div>
+    <div class="titlecard">Title card: <b>“Inspect Before You Trust It.”</b></div>
+    <div class="narration">
+      <p>Tools make the work possible — and they'll hurt you fast if you get careless.</p>
+      <p>Before every use, inspect it. Check the cord, the plug, the guards, the casing. See any damage or wear? Take it out of service and tag it for repair. Don't “just finish this one cut.” A defective tool can mean a shock, a fire, or worse.</p>
+      <p>Every tool needs to be properly grounded or double-insulated. Keep the guards in place — they're not optional, and they are never something you modify or remove.</p>
+      <p>Electrical repairs are for qualified electricians only. An unauthorized fix puts everyone downstream of you at risk.</p>
+      <p>And powder-actuated tools? Those take specific training before you ever pull the trigger.</p>
+      <p>Match your PPE to the tool — gloves, eyes, ears — and let the guard do its job.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 04.1</code> — Hands inspecting a power-tool cord / plug before use.</li>
+        <li><code>IMG 04.2</code> — A red “OUT OF SERVICE — DO NOT USE” tag on a tool.</li>
+        <li>Callout @ “tag it for repair”: <span class="callout">DAMAGED? TAG IT OUT.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CH 05 -->
+  <section class="chapter" id="ch05">
+    <div class="chhead"><span class="chnum">CH 05</span><span class="chttl">Fire Prevention</span><span class="chmeta">~55 sec</span></div>
+    <div class="titlecard">Title card: <b>“Know the Plan Before You Need It.”</b></div>
+    <div class="narration">
+      <p>Fire moves fast, so know your plan before you ever need it.</p>
+      <p>Three things to lock in on day one. Where the emergency phone numbers are posted. Where the fire extinguishers are. And — on projects that require it — your evacuation routes, alarm signals, and meeting area.</p>
+      <p>Extinguishers get inspected regularly, so they're charged and ready when it counts. Only use one if you're trained and it's a small, controllable fire.</p>
+      <p>If it's bigger than that — get out, get everyone out, and report it. No fire is worth your life.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 05.1</code> — Mounted, inspected fire extinguisher on a job-site station / trailer.</li>
+        <li><code>IMG 05.2</code> — Posted emergency numbers / evacuation map on site.</li>
+        <li>Callout @ “get everyone out”: <span class="callout">KNOW YOUR EXITS</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CH 06 -->
+  <section class="chapter" id="ch06">
+    <div class="chhead"><span class="chnum">CH 06</span><span class="chttl">Ladders &amp; Material Handling</span><span class="chmeta">~80 sec</span></div>
+    <div class="titlecard">Title card: <b>“Climb Smart, Lift Smarter.”</b></div>
+    <div class="narration">
+      <p>Two everyday tasks hurt more people than you'd think: climbing and lifting.</p>
+      <p>Ladders first. Extension ladders go up at about a four-to-one angle, and extend at least three feet above the landing — set on firm, level ground, and secured when you can. Step ladders: open them all the way, lock the spreaders, and stay off the top two steps.</p>
+      <p>Now lifting. Bend your knees, keep your back straight, and hold the load close to your body — no twisting. If it's heavy or awkward, get help, or grab a forklift or hoist. There's no trophy for wrecking your back.</p>
+      <p>And when you stack materials, mind the load limits and keep it stable, so nothing shifts or topples on somebody.</p>
+      <p>Work smart, not sore.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 06.1</code> — Extension ladder set at correct angle against a structure, extending above the landing.</li>
+        <li><code>IMG 06.2</code> — Worker lifting correctly: knees bent, back straight, load close — or a team lift.</li>
+        <li>Callout @ “back straight”: <span class="callout">LIFT WITH YOUR LEGS</span></li>
+        <li>Callout @ “top two steps”: <span class="callout">STAY OFF THE TOP 2 STEPS</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CH 07 -->
+  <section class="chapter" id="ch07">
+    <div class="chhead"><span class="chnum">CH 07</span><span class="chttl">Flagging &amp; Traffic</span><span class="chmeta">~55 sec</span></div>
+    <div class="titlecard">Title card: <b>“Never Turn Your Back on Traffic.”</b></div>
+    <div class="narration">
+      <p>When we work in and around live traffic, flagging is what keeps everyone alive — you, the crew, and the driving public.</p>
+      <p>If you're flagging, you're trained for it first. Every time.</p>
+      <p>Wear your high-vis so drivers can see you clearly — especially in low light or bad weather. Position yourself where you're visible, and where you've got an escape path.</p>
+      <p>And the rule you never break: never turn your back on traffic. Always face the oncoming cars, so you can see trouble coming and move.</p>
+      <p>A distracted driver won't be looking out for you. So you look out for you.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 07.1</code> — Martam flagger facing oncoming traffic, high-vis, sign/paddle, roadway work zone with cones.</li>
+        <li>Callout @ “never turn your back on traffic”: <span class="callout">NEVER TURN YOUR BACK ON TRAFFIC</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CH 08 -->
+  <section class="chapter" id="ch08">
+    <div class="chhead"><span class="chnum">CH 08</span><span class="chttl">Housekeeping</span><span class="chmeta">~50 sec</span></div>
+    <div class="titlecard">Title card: <b>“A Clean Site Is a Safe Site.”</b></div>
+    <div class="narration">
+      <p>A clean site is a safe site. It's that simple.</p>
+      <p>Clutter causes trips, slips, and fires, so keep your area orderly as you work. Trash goes in the approved containers — not on the ground.</p>
+      <p>See a nail sticking out of a board? Pull it, or bend it over, before it finds someone's hand or foot. Handle your scrap carefully.</p>
+      <p>Good housekeeping isn't busywork. It's how we cut out the injuries nobody sees coming.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 08.1</code> — Orderly job site: materials staged neatly, waste in a designated container.</li>
+        <li><code>IMG 08.2</code> — Close on bending over / pulling a protruding nail from lumber.</li>
+        <li>Callout @ “A clean site is a safe site”: <span class="callout">CLEAN SITE = SAFE SITE</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CH 09 -->
+  <section class="chapter" id="ch09">
+    <div class="chhead"><span class="chnum">CH 09</span><span class="chttl">First Aid &amp; Injury Reporting</span><span class="chmeta">~90 sec</span></div>
+    <div class="titlecard">Title card: <b>“Report It — Every Time.”</b></div>
+    <div class="narration">
+      <p>If someone gets hurt, here's exactly what you do.</p>
+      <p>First — make sure the area is safe before you step in. You can't help anyone if you become the second victim.</p>
+      <p>Get help fast. Call it out on the radio, and know where the emergency numbers are posted. Only give first aid if you're trained and it's safe to do so — don't make an injury worse. Know where the first aid kits are, and who your trained responders are.</p>
+      <p>Now the part that protects you: report every injury immediately — no matter how small. A scratch today can be an infection next week. And if you realize later that you got hurt on the job, report it the moment you know.</p>
+      <p>Any accident — injury or property damage — gets reported right away. Sign the Accident and Injury log at the end of every shift. And if there's an investigation, take part, and be straight about what happened.</p>
+      <p>Reporting isn't about blame. It's how we stop the same thing from hurting the next person.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 09.1</code> — Worker on radio calling for help; another checking the scene is safe.</li>
+        <li><code>IMG 09.2</code> — Stocked first-aid kit / station on the job site.</li>
+        <li><code>IMG 09.3</code> — Signing the Accident/Injury log on a clipboard (echoes the real SafetyCheck permit photo).</li>
+        <li>Callout @ “no matter how small”: <span class="callout">REPORT EVERYTHING — EVEN SMALL</span></li>
+        <li>Callout @ “make sure the area is safe”: <span class="callout">MAKE SURE THE SCENE IS SAFE</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CH 10 -->
+  <section class="chapter" id="ch10">
+    <div class="chhead"><span class="chnum">CH 10</span><span class="chttl">Acknowledgment &amp; Close</span><span class="chmeta">~55 sec</span></div>
+    <div class="titlecard">Title card: <b>“Welcome to the Team.”</b></div>
+    <div class="narration">
+      <p>Last thing.</p>
+      <p>Before you start work, you'll review and sign the Safety Orientation Acknowledgment form. Your signature says three things: you understand the rules we just covered, you'll follow them on every job, and you'll report unsafe conditions, incidents, and hazards when you see them.</p>
+      <p>That's the deal — and it goes both ways. You look out for the crew, and this crew looks out for you.</p>
+      <p>Welcome to the team. We're glad you're here.</p>
+      <p class="lead">Now let's get to work — and let's all get home safe.</p>
+    </div>
+    <div class="prod">
+      <div class="plabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l4 4M3 21l4-1 11-11a2.8 2.8 0 0 0-4-4L4 16z"/></svg>Production — do not read</div>
+      <ul>
+        <li><code>IMG 10.1</code> — New hire signing the acknowledgment form, supervisor beside them, welcome / handshake feel.</li>
+        <li><code>IMG 10.2</code> — Closing hero: full Martam crew together, end of day, positive — logo lockup.</li>
+        <li>Callout @ “let's all get home safe”: <span class="callout">LET'S ALL GET HOME SAFE</span></li>
+        <li>End card: Martam logo + <em>“Building in All Directions.”</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    End of script v1 · ≈ 1,500 words · 11 modular chapters &nbsp;·&nbsp; SafetyCheck Inc. for Martam Construction Inc.
+  </footer>
+</div>
+
+<script>
+  // Reading mode
+  function toggleReading(){
+    document.body.classList.toggle('reading');
+    var on = document.body.classList.contains('reading');
+    document.getElementById('readBtn').classList.toggle('active', on);
+    document.getElementById('readLbl').textContent = on ? 'Reading mode: ON' : 'Reading mode';
+  }
+  // Text size
+  var sizes = [1.30,1.45,1.62,1.80,2.00,2.25], pct=[80,90,100,111,123,139], si=2;
+  function setSize(d){
+    si = Math.max(0, Math.min(sizes.length-1, si+d));
+    document.documentElement.style.setProperty('--read-size', sizes[si]+'rem');
+    document.getElementById('sizeLbl').textContent = 'Text '+pct[si]+'%';
+  }
+  // Build jump menu from chapters
+  (function(){
+    var sel = document.getElementById('jump');
+    document.querySelectorAll('.chapter').forEach(function(ch){
+      var num = ch.querySelector('.chnum').textContent.trim();
+      var ttl = ch.querySelector('.chttl').textContent.trim();
+      var o = document.createElement('option');
+      o.value = ch.id; o.textContent = num + ' — ' + ttl;
+      sel.appendChild(o);
+    });
+  })();
+  function jumpTo(id){ if(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); } }
+</script>
+</body>
+</html>
