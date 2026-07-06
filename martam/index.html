@@ -251,7 +251,7 @@
   <h1>New-Hire <em>Safety</em> Orientation</h1>
   <p class="sub">Watch the orientation, jump to any chapter, and test yourself as you go. Everything here is to help you learn the habits that get you — and the person next to you — home safe. Your answers stay on your device; nothing is recorded.</p>
   <div class="badges">
-    <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>11 Chapters · ~8 min</span>
+    <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>12 Chapters · ~9 min</span>
     <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>Interactive Quizzes</span>
     <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/></svg>Flashcards & Scenarios</span>
     <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5"/></svg>Building in All Directions</span>
@@ -267,7 +267,7 @@
     <div class="video-vert">
       <video id="mainvid" controls playsinline preload="metadata"
         poster="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1080/martam-safety/IMG-00-1_welcome-hero.jpg">
-        <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/martam-safety/martam-safety-orientation.mp4" type="video/mp4">
+        <source src="https://res.cloudinary.com/dsbllwpbh/video/upload/martam-safety/martam-general-safety-v2.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -367,10 +367,10 @@
 <script>
 /* ---------- DATA ---------- */
 var CH = [
- [0,"Welcome to Martam"],[34,"General Safety Requirements"],[75,"Personal Protective Equipment"],
- [142,"Fall Protection"],[194,"Electrical & Power Tools"],[243,"Fire Prevention"],
- [276,"Ladders & Material Handling"],[319,"Flagging & Traffic"],[354,"Housekeeping"],
- [379,"First Aid & Injury Reporting"],[437,"Acknowledgment & Close"]
+ [0,"Welcome to Martam"],[31,"General Safety Requirements"],[72,"Call Before You Dig"],
+ [151,"Personal Protective Equipment"],[217,"Fall Protection"],[269,"Electrical & Power Tools"],
+ [318,"Fire Prevention"],[351,"Ladders & Material Handling"],[394,"Flagging & Traffic"],
+ [429,"Housekeeping"],[460,"First Aid & Injury Reporting"],[515,"Acknowledgment & Close"]
 ];
 var CLIMG = "https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1000/martam-safety/";
 
@@ -379,36 +379,41 @@ var MODS = [
   kp:[["Study every job first","Look at the task, tools, equipment, and ground. Ten seconds of thinking beats ten weeks of healing."],
       ["Obey every warning sign","Signs, labels, and barricades are there because someone learned the hard way."],
       ["See it, say it","Report unsafe conditions, damaged gear, and near misses to your supervisor right away."]]},
- {id:"m2",label:"02 · PPE",title:"Personal Protective Equipment",img:"ppe-flatlay",cap:"Your last line of defense — head to toe.",
+ {id:"mU",label:"02 · Call Before You Dig",title:"Call Before You Dig",img:"IMG-UTIL-1_locate-flags",cap:"Call Julie at 811 before you dig — every time.",
+  kp:[["Call 811 before you dig","One call to Julie gets utilities located. A strike can mean serious injury, a gas leak, lost power, and major delays."],
+      ["Verify the locates","Paint, flags, and marks must be current, visible, and understood by everyone before the shovel or excavator moves."],
+      ["Respect the tolerance zone","Hand-dig or use vacuum excavation near marked lines. Never assume the depth or location — old markings and as-builts don't always match reality."],
+      ["Something looks wrong? Stop.","Stop work, pause and verify, and document the situation with photos. Communicate the plan before equipment moves."]]},
+ {id:"m2",label:"03 · PPE",title:"Personal Protective Equipment",img:"ppe-flatlay",cap:"Your last line of defense — head to toe.",
   kp:[["Hard hat, always","Worn at all times on every project. Non-conductive, with your name and the Martam logo."],
       ["Protect eyes, ears, lungs","Safety glasses for debris; goggles for splash; face shield over glasses for grinding. Plugs/muffs in noise. Respirators for dust and fumes."],
       ["Hands and feet","Work gloves for the rough stuff; steel-toe boots for jackhammers, tampers, and heavy equipment."],
       ["Dress for the job","Shirts with a 4-inch sleeve minimum, long pants. No shorts, no tank tops."]]},
- {id:"m3",label:"03 · Fall Protection",title:"Fall Protection",img:"IMG-03-1_harness",cap:"Six feet up with nothing to catch you is too high.",
+ {id:"m3",label:"04 · Fall Protection",title:"Fall Protection",img:"IMG-03-1_harness",cap:"Six feet up with nothing to catch you is too high.",
   kp:[["6 feet = tie off","At 6 feet or more above the ground, fall protection is mandatory."],
       ["Guardrails first","A solid barrier on open edges is the first choice when it's feasible."],
       ["Harness, never a belt","When guardrails aren't possible, use a full-body harness and lanyard on an approved anchor. No safety belts, ever."]]},
- {id:"m4",label:"04 · Electrical & Tools",title:"Electrical & Power Tools",img:"IMG-04-1_inspect-cord",cap:"Inspect before you trust it.",
+ {id:"m4",label:"05 · Electrical & Tools",title:"Electrical & Power Tools",img:"IMG-04-1_inspect-cord",cap:"Inspect before you trust it.",
   kp:[["Inspect every time","Check the cord, plug, guards, and casing before each use."],
       ["Damaged? Tag it out","Take defective tools out of service and tag them for repair — don't 'just finish this one cut.'"],
       ["Guards stay on","Grounded or double-insulated only. Keep guards in place; qualified electricians handle repairs."]]},
- {id:"m5",label:"05 · Fire",title:"Fire Prevention",img:"IMG-05-1_extinguisher",cap:"Know the plan before you need it.",
+ {id:"m5",label:"06 · Fire",title:"Fire Prevention",img:"IMG-05-1_extinguisher",cap:"Know the plan before you need it.",
   kp:[["Know three things","Where the emergency numbers, the extinguishers, and your evacuation routes are."],
       ["Use an extinguisher only if…","You're trained and it's a small, controllable fire."],
       ["Bigger than that? Get out","Get everyone out and report it. No fire is worth your life."]]},
- {id:"m6",label:"06 · Ladders & Lifting",title:"Ladders & Material Handling",img:"IMG-06-1_ladder-angle",cap:"Climb smart, lift smarter.",
+ {id:"m6",label:"07 · Ladders & Lifting",title:"Ladders & Material Handling",img:"IMG-06-1_ladder-angle",cap:"Climb smart, lift smarter.",
   kp:[["Ladder set-up","Extension ladders at about 4:1, extending 3 ft above the landing. Step ladders: open fully, lock spreaders, stay off the top two steps."],
       ["Lift with your legs","Knees bent, back straight, load close, no twisting. Get help or a hoist for heavy loads."],
       ["Stack it safe","Mind load limits and keep materials stable so nothing shifts or topples."]]},
- {id:"m7",label:"07 · Flagging",title:"Flagging & Traffic",img:"IMG-07-1_flagger",cap:"Never turn your back on traffic.",
+ {id:"m7",label:"08 · Flagging",title:"Flagging & Traffic",img:"IMG-07-1_flagger",cap:"Never turn your back on traffic.",
   kp:[["Trained first","You're trained before you flag — every time."],
       ["Stay visible","Hi-vis on, good positioning, and an escape path — especially in low light or bad weather."],
       ["Face the traffic","Never turn your back on oncoming vehicles. A distracted driver won't watch out for you."]]},
- {id:"m8",label:"08 · Housekeeping",title:"Housekeeping",img:"IMG-08-1_orderly-site",cap:"A clean site is a safe site.",
+ {id:"m8",label:"09 · Housekeeping",title:"Housekeeping",img:"IMG-08-1_orderly-site",cap:"A clean site is a safe site.",
   kp:[["Keep it orderly","Clutter causes trips, slips, and fires. Trash goes in approved containers."],
       ["Handle scrap safely","Pull or bend over protruding nails before they find a hand or foot."]]},
- {id:"m9",label:"09 · First Aid & Reporting",title:"First Aid & Injury Reporting",img:"IMG-09-3_sign-log",cap:"Report it — every time.",
-  kp:[["Scene safe first","Make sure the area is safe before helping — don't become the second victim. Call for help on the radio."],
+ {id:"m9",label:"10 · First Aid & Reporting",title:"First Aid & Injury Reporting",img:"IMG-09-3_sign-log",cap:"Report it — every time.",
+  kp:[["Scene safe first","Make sure the area is safe before helping — don't become the second victim. Call for help on your cell phone."],
       ["Report everything","Every injury, immediately, no matter how small — and the moment you realize a later one."],
       ["Sign the log","Sign the Accident/Injury log every shift and cooperate with any investigation."]]}
 ];
@@ -416,6 +421,8 @@ var MODS = [
 var MODQ = {
  m1:[{t:"tf",id:"m1a",q:"If you spot an unsafe condition, it's fine to wait and let someone else report it.",a:false,ex:"Report it to your supervisor right away — see it, say it. Don't assume the next person will catch it."},
      {t:"mc",id:"m1b",q:"Before you start any task, the first thing to do is:",o:[["Work as fast as possible to save time",false],["Study the task, tools, equipment, and work area for hazards",true],["Take down the warning signs",false]],ex:"Study the job first — understanding the hazards lets you plan safe work."}],
+ mU:[{t:"tf",id:"mUa",q:"You only need to call 811 before digging if you think a utility line is nearby.",a:false,ex:"Call Julie at 811 before you dig — every time. One call gets utilities located and prevents strikes, gas leaks, and outages."},
+     {t:"mc",id:"mUb",q:"Locate marks (paint, flags) are on the ground. Before the excavator moves, you should:",o:[["Dig fast before the marks fade",false],["Confirm the locates are current and hand-dig or vacuum excavate in the tolerance zone",true],["Assume the depth matches the as-built drawings",false]],ex:"Verify the locates, respect the tolerance zone, and hand-dig or vacuum excavate near marked lines — old markings and as-builts don't always match reality."}],
  m2:[{t:"mc",id:"m2a",q:"Hard hats must be worn:",o:[["Only when working at heights",false],["At all times, on every project",true],["Only when a supervisor is watching",false]],ex:"Required at all times on every project — non-conductive, with your name and the Martam logo."},
      {t:"tf",id:"m2b",q:"When grinding, safety glasses alone are enough — you don't need a face shield.",a:false,ex:"For grinding, chipping, or cut-off saws, wear a face shield OVER your safety glasses."}],
  m3:[{t:"mc",id:"m3a",q:"Fall protection is mandatory when working at or above:",o:[["4 feet",false],["6 feet",true],["10 feet",false]],ex:"At 6 feet or more above the ground, fall protection is mandatory."},
@@ -432,7 +439,7 @@ var MODQ = {
  m8:[{t:"tf",id:"m8a",q:"A nail sticking out of a board can be left alone if you're busy.",a:false,ex:"Pull it or bend it over before it finds someone's hand or foot."},
      {t:"mc",id:"m8b",q:"Good housekeeping reduces:",o:[["Only paperwork",false],["Trips, slips, and fire hazards",true],["The need for PPE",false]],ex:"A clean, orderly site cuts trips, slips, and fires."}],
  m9:[{t:"tf",id:"m9a",q:"Minor injuries like a small scratch don't need to be reported.",a:false,ex:"Report every injury immediately, no matter how small — a scratch today can be an infection next week."},
-     {t:"mc",id:"m9b",q:"Before helping an injured coworker, you should first:",o:[["Rush in immediately",false],["Make sure the area is safe so you don't become the second victim",true],["Move the person right away",false]],ex:"Make sure the scene is safe first, then get help on the radio."},
+     {t:"mc",id:"m9b",q:"Before helping an injured coworker, you should first:",o:[["Rush in immediately",false],["Make sure the area is safe so you don't become the second victim",true],["Move the person right away",false]],ex:"Make sure the scene is safe first, then get help on your cell phone."},
      {t:"tf",id:"m9c",q:"You must sign the Accident/Injury log at the end of every shift.",a:true,ex:"Sign the log every shift and cooperate fully with any investigation."}]
 };
 
@@ -448,7 +455,9 @@ var FLASH = [
  ["Safety belts?","<b>Never.</b> Full-body harness only."],
  ["Eye protection for grinding?","<b>Face shield + safety glasses.</b>"],
  ["Hearing protection?","In all high-noise areas — <b>hearing doesn't grow back</b>."],
- ["See a hazard?","<b>See it, say it</b> — tell your supervisor right away."]
+ ["See a hazard?","<b>See it, say it</b> — tell your supervisor right away."],
+ ["Before you dig?","<b>Call Julie at 811</b> — every time. Verify the locates first."],
+ ["Digging near marked lines?","<b>Hand-dig or vacuum excavate</b> in the tolerance zone."]
 ];
 
 var MATCH = [
@@ -462,9 +471,10 @@ var MATCH = [
 
 var SCEN = [
  {t:"mc",id:"s1",q:"You pick up a grinder and notice the safety guard is missing. What do you do?",o:[["Use it carefully just this once",false],["Take it out of service, tag it, and tell your supervisor",true],["Remove the other guards so it's balanced",false]],ex:"Never use a tool with a missing guard. Tag it out and report it."},
- {t:"mc",id:"s2",q:"A coworker slips and is hurt at the bottom of a trench. Your FIRST move is:",o:[["Jump straight in to help",false],["Make sure the area is safe, then call for help on the radio",true],["Move them immediately",false]],ex:"Make sure the scene is safe first — you can't help if you become the second victim."},
+ {t:"mc",id:"s2",q:"A coworker slips and is hurt at the bottom of a trench. Your FIRST move is:",o:[["Jump straight in to help",false],["Make sure the area is safe, then call for help on your cell phone",true],["Move them immediately",false]],ex:"Make sure the scene is safe first — you can't help if you become the second victim."},
  {t:"mc",id:"s3",q:"This morning you realize you tweaked your back on the job yesterday. You should:",o:[["Wait to see if it gets worse",false],["Report the injury now, as soon as you're aware of it",true],["Only report it if you miss work",false]],ex:"Report an injury the moment you become aware of it — even after the fact."},
- {t:"mc",id:"s4",q:"It's getting dark and starting to rain while you flag traffic. You should:",o:[["Take your vest off so it doesn't get wet",false],["Keep your hi-vis on, stay visible, and keep facing traffic",true],["Turn around to watch the crew behind you",false]],ex:"Low light and bad weather make visibility critical — hi-vis on, face the traffic."}
+ {t:"mc",id:"s4",q:"It's getting dark and starting to rain while you flag traffic. You should:",o:[["Take your vest off so it doesn't get wet",false],["Keep your hi-vis on, stay visible, and keep facing traffic",true],["Turn around to watch the crew behind you",false]],ex:"Low light and bad weather make visibility critical — hi-vis on, face the traffic."},
+ {t:"mc",id:"s5",q:"You're about to trench and the locate marks look faded and days old. You should:",o:[["Dig — the marks were close enough before",false],["Stop, re-verify the locates with a fresh 811 call, and hand-dig in the tolerance zone",true],["Trust the as-built drawings for depth",false]],ex:"Old or unclear markings? Stop and verify. Re-call 811, confirm the locates, and hand-dig or vacuum excavate near marked lines."}
 ];
 
 var BLITZ = [
@@ -477,7 +487,8 @@ var BLITZ = [
  ["Keep tool guards in place — never remove them.",true],
  ["You should fight any fire, no matter how big.",false],
  ["Never turn your back on traffic.",true],
- ["Leave protruding nails alone if you're in a hurry.",false]
+ ["Leave protruding nails alone if you're in a hurry.",false],
+ ["Call Julie at 811 before you dig — every time.",true]
 ];
 
 var FINAL = [
@@ -490,7 +501,8 @@ var FINAL = [
  {q:"Use a fire extinguisher only when:",o:[["Trained and the fire is small & controllable",true],["Any time there is fire",false],["You're nearest to it",false],["A supervisor is present",false]]},
  {q:"Before helping an injured coworker, first:",o:[["Make sure the area is safe",true],["Move them",false],["Finish your task",false],["Wait for a manager",false]]},
  {q:"For grinding, wear:",o:[["A face shield over safety glasses",true],["Safety glasses only",false],["No eye protection",false],["Sunglasses",false]]},
- {q:"Injuries should be reported:",o:[["Immediately, no matter how small",true],["Only if serious",false],["At the end of the week",false],["Only if you miss work",false]]}
+ {q:"Injuries should be reported:",o:[["Immediately, no matter how small",true],["Only if serious",false],["At the end of the week",false],["Only if you miss work",false]]},
+ {q:"Before you dig, you must:",o:[["Call Julie at 811 and verify the locates",true],["Just avoid the obvious lines",false],["Only call if it's a deep trench",false],["Trust the as-built drawings",false]]}
 ];
 
 /* ---------- SCORE ---------- */
@@ -762,7 +774,7 @@ document.querySelectorAll(".video-block").forEach(initVideoBlock);
     </a>
     <a href="vo-script.html">
       <span class="adm-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span>
-      <span class="adm-txt"><b>VO Script</b><small>11-chapter teleprompter script</small></span>
+      <span class="adm-txt"><b>VO Script</b><small>12-chapter teleprompter script</small></span>
     </a>
   </nav>
   <div class="adm-panel-foot">
