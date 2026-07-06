@@ -578,14 +578,13 @@ function initVideoBlock(root){
   function seekTo(t){ internalSeek=true; try{vid.currentTime=t;}catch(e){} }
   chapters.forEach(function(btn){ btn.addEventListener("click",function(){
     var start=parseFloat(btn.dataset.start);
-    chapterEnd=btn.dataset.end==="inf"?null:parseFloat(btn.dataset.end);
+    chapterEnd=null; // jump to the chapter and keep playing straight through
     chapters.forEach(function(c){c.classList.remove("active");}); btn.classList.add("active");
     var begin=function(){ seekTo(start); vid.play(); };
     if(vid.readyState>=1)begin(); else vid.addEventListener("loadedmetadata",begin,{once:true});
     root.scrollIntoView({behavior:"smooth",block:"nearest"});
   });});
   vid.addEventListener("timeupdate",function(){
-    if(chapterEnd!=null && vid.currentTime>=chapterEnd){ vid.pause(); chapterEnd=null; }
     var t=vid.currentTime, active=null;
     chapters.forEach(function(c){ var s=parseFloat(c.dataset.start), e=c.dataset.end==="inf"?Infinity:parseFloat(c.dataset.end); if(t>=s&&t<e)active=c; });
     chapters.forEach(function(c){ c.classList.toggle("active",c===active); });
