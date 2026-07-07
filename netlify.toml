@@ -2,7 +2,7 @@
 [build]
   publish = "."
 
-# ── Access gate ─────────────────────────────────────────────────────────────
+# ── Access gate: Martam training ─────────────────────────────────────────────
 # Password-protects the Martam training area using the SITE_PASSWORD environment
 # variable (Netlify → Site settings → Environment variables). Password only, no
 # username. The password itself is never committed to this repo.
@@ -12,9 +12,17 @@
   path = "/martam/*"
   function = "gate"
 
-# ── Going live ───────────────────────────────────────────────────────────────
+# ── Access gate: Partner / SafetyCheck pitch kit ─────────────────────────────
+# Separate, independently-passworded area for the Orbis × SafetyCheck program
+# kit (budget model, landing page, library, estimates). Reads its own
+# PARTNER_PASSWORD env var so it can differ from the training password.
+[[edge_functions]]
+  path = "/partner/*"
+  function = "gate-partner"
+
+# ── Going live (Martam) ──────────────────────────────────────────────────────
 # To make the training page public but keep the internal docs protected,
-# comment out the block above and uncomment the block below (see README.md).
+# comment out the /martam/* block above and uncomment the block below.
 #
 # [[edge_functions]]
 #   path = "/martam/*"

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safety Training Program — Budget & Partnership Model · Orbis × SafetyCheck</title>
+<style>
+  :root{
+    --ink:#131a24; --body:#28313d; --muted:#5f6a78; --faint:#8b95a3;
+    --line:#e4e8ee; --line2:#eef1f5; --bg:#f6f8fb; --card:#ffffff;
+    --orbis:#2563eb; --orbis-bg:#eef3ff;
+    --sc:#0f9d58; --sc-bg:#e9f7ef;
+    --cost:#64748b; --cost-bg:#eef1f5;
+    --accent:#4338ca; --gold:#b7791f; --warn:#c2410c;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--body);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.62;-webkit-font-smoothing:antialiased;font-size:15.5px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px;}
+  h1,h2,h3,h4{color:var(--ink);line-height:1.2;}
+  a{color:var(--orbis);}
+  .muted{color:var(--muted);} .faint{color:var(--faint);}
+
+  /* HERO */
+  header.hero{background:linear-gradient(160deg,#101826 0%,#1b2a42 55%,#243a5e 100%);color:#eaf0f8;padding:52px 0 46px;}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#8fb4ee;font-weight:700;margin:0 0 14px;}
+  header.hero h1{color:#fff;font-size:33px;margin:0 0 12px;letter-spacing:-.01em;font-weight:800;max-width:20ch;}
+  header.hero p.lede{font-size:17px;color:#c7d4e6;margin:0 0 24px;max-width:64ch;}
+  .partners{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px;color:#aebfd6;}
+  .partners b{color:#fff;}
+  .pill-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;}
+  .hpill{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:7px 15px;font-size:13px;color:#dbe6f5;}
+
+  /* TOC */
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(246,248,251,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav.toc .wrap{display:flex;gap:6px;flex-wrap:wrap;padding-top:11px;padding-bottom:11px;}
+  nav.toc a{font-size:13px;color:var(--muted);text-decoration:none;padding:5px 11px;border-radius:7px;font-weight:500;white-space:nowrap;}
+  nav.toc a:hover{background:var(--orbis-bg);color:var(--orbis);}
+
+  section{padding:44px 0;border-bottom:1px solid var(--line);}
+  section.tight{padding:34px 0;}
+  .s-label{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:800;margin:0 0 8px;display:flex;align-items:center;gap:8px;}
+  .s-label svg{width:15px;height:15px;}
+  h2{font-size:25px;margin:0 0 6px;font-weight:800;letter-spacing:-.01em;}
+  .sub{color:var(--muted);font-size:16px;margin:0 0 26px;max-width:70ch;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;}
+  .grid{display:grid;gap:18px;}
+  .g2{grid-template-columns:1fr 1fr;} .g3{grid-template-columns:1fr 1fr 1fr;}
+  @media(max-width:820px){.g2,.g3{grid-template-columns:1fr;}}
+
+  /* legend chips */
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 22px;}
+  .lchip{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;}
+  .dot{width:13px;height:13px;border-radius:4px;flex:0 0 auto;}
+  .dot.cost{background:var(--cost);} .dot.orbis{background:var(--orbis);} .dot.sc{background:var(--sc);}
+
+  /* format cards */
+  .fmt{position:relative;overflow:hidden;}
+  .fmt .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:12px;}
+  .fmt.ai .tag{background:var(--orbis-bg);color:var(--orbis);}
+  .fmt.film .tag{background:#fef2e7;color:var(--warn);}
+  .fmt h3{font-size:20px;margin:0 0 4px;}
+  .fmt .price{font-size:14px;color:var(--muted);margin:2px 0 14px;}
+  .fmt ul{margin:0 0 16px;padding-left:0;list-style:none;}
+  .fmt li{padding:6px 0 6px 26px;position:relative;font-size:14.5px;border-bottom:1px solid var(--line2);}
+  .fmt li:last-child{border-bottom:none;}
+  .fmt li svg{position:absolute;left:0;top:9px;width:16px;height:16px;color:var(--sc);}
+  .metarow{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+  .metarow b{color:var(--ink);}
+
+  /* tables */
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px;}
+  th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line2);}
+  th{background:#fafbfd;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;white-space:nowrap;}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#fafbfe;}
+  .rowhead{font-weight:700;color:var(--ink);}
+  .totrow td{background:#f4f7fc;font-weight:700;color:var(--ink);border-top:2px solid var(--line);}
+  .cost-c{color:var(--cost);font-weight:700;} .orbis-c{color:var(--orbis);font-weight:700;} .sc-c{color:var(--sc);font-weight:700;}
+  .tnote{font-size:12.5px;color:var(--faint);margin:10px 2px 0;}
+
+  /* waterfall */
+  .fall{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);}
+  @media(max-width:820px){.fall{grid-template-columns:1fr;}}
+  .fcol{padding:22px 22px;background:var(--card);border-right:1px solid var(--line);}
+  .fcol:last-child{border-right:none;}
+  .fcol .who{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin:0 0 3px;}
+  .fcol.c1{background:var(--cost-bg);} .fcol.c1 .who{color:var(--cost);}
+  .fcol.c2{background:var(--orbis-bg);} .fcol.c2 .who{color:var(--orbis);}
+  .fcol.c3{background:var(--sc-bg);} .fcol.c3 .who{color:var(--sc);}
+  .fcol .big{font-size:30px;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin:2px 0 2px;}
+  .fcol .cap{font-size:13px;color:var(--muted);}
+  .fcol .marg{display:inline-block;margin-top:10px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:6px;background:rgba(0,0,0,.05);color:var(--body);}
+
+  .callout{background:var(--orbis-bg);border:1px solid #d3e0ff;border-radius:var(--radius);padding:18px 22px;display:flex;gap:14px;align-items:flex-start;}
+  .callout svg{width:22px;height:22px;color:var(--orbis);flex:0 0 auto;margin-top:2px;}
+  .callout.green{background:var(--sc-bg);border-color:#c2e8d3;}
+  .callout.green svg{color:var(--sc);}
+  .callout.gold{background:#fdf6e9;border-color:#f0e0bd;}
+  .callout.gold svg{color:var(--gold);}
+  .callout p{margin:0;font-size:14.5px;}
+  .callout b{color:var(--ink);}
+
+  ul.clean{list-style:none;padding:0;margin:0;}
+  ul.clean li{padding:8px 0 8px 26px;position:relative;border-bottom:1px solid var(--line2);font-size:14.5px;}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li svg{position:absolute;left:0;top:10px;width:16px;height:16px;color:var(--orbis);}
+
+  .stat{display:flex;flex-direction:column;gap:2px;}
+  .stat .v{font-size:27px;font-weight:800;color:var(--ink);letter-spacing:-.01em;}
+  .stat .l{font-size:12.5px;color:var(--muted);}
+
+  .rolegrid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  @media(max-width:820px){.rolegrid{grid-template-columns:1fr;}}
+  .rolecol{padding:22px 24px;background:var(--card);}
+  .rolecol:first-child{border-right:1px solid var(--line);}
+  .rolecol h4{margin:0 0 4px;font-size:16px;display:flex;align-items:center;gap:9px;}
+  .rolecol .tagm{font-size:12px;color:var(--muted);margin:0 0 14px;}
+
+  .src{font-size:12.5px;color:var(--muted);}
+  .src a{color:var(--muted);text-decoration:underline;}
+  details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:2px 18px;margin-bottom:10px;}
+  summary{cursor:pointer;padding:14px 0;font-weight:600;color:var(--ink);font-size:14.5px;}
+  details p, details ul{font-size:13.5px;color:var(--body);}
+
+  .disc{background:#fbfcfe;border:1px dashed var(--line);border-radius:12px;padding:16px 20px;font-size:13px;color:var(--muted);}
+  footer{padding:34px 0 60px;color:var(--faint);font-size:12.5px;text-align:center;}
+  .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#eef1f5;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;color:var(--body);}
+  @media print{nav.toc{display:none;} section{page-break-inside:avoid;} body{font-size:12px;} header.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Prepared by Orbis Design for SafetyCheck Inc.</p>
+    <h1>Safety Training Video Program — Budget &amp; Partnership Model</h1>
+    <p class="lede">A shared plan for productizing modern, phone-first safety trainings — and pricing them so SafetyCheck, its customers, and Orbis all win. Grounded in 2025–2026 market benchmarks, built around the Martam pilot, and ready to scale to the rest of SafetyCheck's book.</p>
+    <div class="partners">
+      <span><b>Orbis Design</b> — production engine</span>
+      <span style="opacity:.5">×</span>
+      <span><b>SafetyCheck Inc.</b> — safety expertise, client relationships &amp; hosting</span>
+    </div>
+    <div class="pill-row">
+      <span class="hpill">Two production formats</span>
+      <span class="hpill">3-layer pricing (cost → Orbis → customer)</span>
+      <span class="hpill">Scoring &amp; completion tracking</span>
+      <span class="hpill">Recurring revenue</span>
+      <span class="hpill">Worked Martam example</span>
+    </div>
+    <div style="margin-top:30px;">
+      <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7f92ad;font-weight:700;margin:0 0 12px;">The rest of the kit</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="safetycheck-training-landing.html" style="display:inline-flex;align-items:center;gap:8px;background:#1ABC9C;color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:11px 18px;border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+          Customer landing page
+        </a>
+        <a href="safetycheck-training-library.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#eaf0f8;text-decoration:none;font-weight:600;font-size:14px;padding:11px 18px;border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          First-year library
+        </a>
+        <a href="safetycheck-estimate-martam.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#eaf0f8;text-decoration:none;font-weight:600;font-size:14px;padding:11px 18px;border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          Single-course estimate
+        </a>
+        <a href="safetycheck-estimate-library.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#eaf0f8;text-decoration:none;font-weight:600;font-size:14px;padding:11px 18px;border-radius:8px;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg>
+          Library estimate
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#model">The model</a>
+    <a href="#formats">Two formats</a>
+    <a href="#tracking">Scoring &amp; tracking</a>
+    <a href="#pricing">Pricing waterfall</a>
+    <a href="#recurring">Recurring revenue</a>
+    <a href="#example">Martam example</a>
+    <a href="#packages">Packages</a>
+    <a href="#benchmarks">Market benchmarks</a>
+    <a href="#partnership">Partnership &amp; next steps</a>
+  </div>
+</nav>
+
+<!-- THE MODEL -->
+<section id="model">
+  <div class="wrap">
+    <p class="s-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>The opportunity in one line</p>
+    <h2>Turn safety trainings into a productized, trackable program SafetyCheck can sell to every client.</h2>
+    <p class="sub">Martam proved the format: a short, phone-first safety video with clickable chapters and built-in knowledge checks, delivered on a branded page behind a login. The same machine can produce a library of these — fast and affordably — because Orbis's AI-assisted stack strips out the cost that normally makes custom training expensive. That low production cost is what leaves room for healthy margins at <em>both</em> companies while still pricing below traditional agencies.</p>
+
+    <div class="grid g3" style="margin-bottom:22px">
+      <div class="card stat"><span class="v">~$5–8k</span><span class="l">What a custom interactive safety module typically sells for (mid-market)</span></div>
+      <div class="card stat"><span class="v">70–90%</span><span class="l">Commonly cited production savings from AI-assisted vs. traditional</span></div>
+      <div class="card stat"><span class="v">15–25×</span><span class="l">Value multiple: per-seat tracked training vs. a one-time video, over 3 years</span></div>
+    </div>
+
+    <div class="callout green">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+      <p><b>Why partner instead of one-off projects:</b> SafetyCheck owns the client relationships, the safety subject-matter expertise, and the trust to host the trainings. Orbis owns a repeatable production pipeline that turns a slide deck or a job site into a finished, tracked course. Neither is as valuable alone. Packaged together — video + tracking + hosting — it becomes a recurring product, not a series of invoices.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TWO FORMATS -->
+<section id="formats">
+  <div class="wrap">
+    <p class="s-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/></svg>Two production formats</p>
+    <h2>Same training page — two ways to fill it.</h2>
+    <p class="sub">Every training uses the same interactive wrapper (video + chapters + quizzes + tracking). What changes is how the video itself is made. Offering two formats lets SafetyCheck meet different budgets and match the client's appetite for authenticity.</p>
+
+    <div class="grid g2">
+      <div class="card fmt ai">
+        <span class="tag">Format 1 · AI Studio</span>
+        <h3>AI-produced video</h3>
+        <p class="price">The Martam pilot format · fastest &amp; most affordable</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>AI voiceover (ElevenLabs) from an approved script</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Photoreal AI imagery matched to the client's job sites &amp; brand</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Captioned vertical cut assembled in Descript</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>No filming, no scheduling around crews — quick turnaround</li>
+        </ul>
+        <div class="metarow">
+          <span><b>Best for</b> policy/orientation content, fast rollouts, tight budgets</span>
+          <span><b>Turnaround</b> ~1–2 weeks</span>
+        </div>
+      </div>
+
+      <div class="card fmt film">
+        <span class="tag">Format 2 · On-Site Filmed</span>
+        <h3>Real iPhone interviews + b-roll</h3>
+        <p class="price">Authentic, client-specific · higher production effort</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Real employees on real job sites, filmed mobile-journalism style</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Their own supervisors' voices replace AI narration</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>On-site b-roll instead of generated images</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Same chaptered, quizzed, tracked training page</li>
+        </ul>
+        <div class="metarow">
+          <span><b>Best for</b> culture/buy-in, flagship courses, "this is us" authenticity</span>
+          <span><b>Turnaround</b> ~3–5 weeks (incl. a shoot day)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout gold" style="margin-top:20px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+      <p><b>A useful myth-buster for client conversations:</b> "filmed" is more expensive than AI here, but it is <em>not</em> the most expensive option — heavy 2D/motion-graphics animation often costs <em>more</em> than a real shoot ($7,000–$20,000+/finished minute). Mobile-journalism filming keeps the authentic feel while staying lean. The real savings story is AI voiceover + AI imagery vs. traditional production, not "animated vs. filmed."</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCORING & TRACKING -->
+<section id="tracking">
+  <div class="wrap">
+    <p class="s-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>The layer that makes it a product</p>
+    <h2>Scoring &amp; completion tracking — the compliance record is the real value.</h2>
+    <p class="sub">For safety training, the video is only half the deliverable. What a company like Martam actually needs is <em>proof</em>: a record that each employee took the training, when, and how they scored. We've already built this exact system on Orbis's Hamstra roofing trainings — it ports directly onto the SafetyCheck pages.</p>
+
+    <div class="grid g2" style="margin-bottom:20px">
+      <div class="card">
+        <h4 style="margin:0 0 12px">What it does</h4>
+        <ul class="clean">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Each learner logs in with their <b>name</b> before starting</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Every quiz and module <b>score is recorded</b>, with timestamps</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>A <b>completion certificate</b> is generated with their name &amp; final score</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>SafetyCheck gets a <b>dashboard / export</b> of who's done and who hasn't</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4 style="margin:0 0 12px">Why it matters commercially</h4>
+        <ul class="clean">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V5z"/></svg>Audit-ready OSHA documentation SafetyCheck can hand its clients</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V5z"/></svg>Turns a one-time video into an <b>annual, per-employee</b> service</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V5z"/></svg>The same login that meters completion also <b>meters per-seat billing</b></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V5z"/></svg>Creates stickiness — the client's records live in SafetyCheck's system</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
+      <p><b>Already built, low cost to run.</b> The Hamstra system uses a lightweight database (Supabase) that costs little to nothing at this scale. It's a modest one-time setup per client program, then a small recurring hosting line — but it unlocks the per-seat recurring revenue in the next section, which is where the real money is over time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING WATERFALL -->
+<section id="pricing">
+  <div class="wrap">
+    <p class="s-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>The three-layer pricing model</p>
+    <h2>Cost → Orbis price → customer price.</h2>
+    <p class="sub">Every deliverable has three numbers. This keeps the partnership transparent: Orbis is paid fairly above its cost, SafetyCheck earns a real margin for owning the client and the risk, and the customer still pays below what a traditional agency would quote. Figures below are a <b>recommended starting model</b> grounded in the benchmarks — tune them to Orbis's capacity and SafetyCheck's market.</p>
+
+    <div class="legend">
+      <span class="lchip"><span class="dot cost"></span>Orbis production cost (internal effort)</span>
+      <span class="lchip"><span class="dot orbis"></span>Orbis → SafetyCheck (what Orbis invoices)</span>
+      <span class="lchip"><span class="dot sc"></span>SafetyCheck → Customer (retail price)</span>
+    </div>
+
+    <h3 style="font-size:17px;margin:0 0 12px">Per-video pricing</h3>
+    <div class="tblwrap" style="margin-bottom:10px">
+      <table>
+        <thead>
+          <tr>
+            <th>Deliverable</th>
+            <th class="num">Orbis cost</th>
+            <th class="num">Orbis → SafetyCheck</th>
+            <th class="num">SafetyCheck → Customer</th>
+            <th class="num">SafetyCheck margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rowhead">Format 1 · AI Studio video<br><span class="faint" style="font-weight:400">~6–10 min, interactive page, 1 revision round</span></td>
+            <td class="num cost-c">~$1,800</td>
+            <td class="num orbis-c">$3,800</td>
+            <td class="num sc-c">$7,500</td>
+            <td class="num">$3,700 · 49%</td>
+          </tr>
+          <tr>
+            <td class="rowhead">Format 2 · On-Site Filmed video<br><span class="faint" style="font-weight:400">1 shoot day + interviews/b-roll, interactive page</span></td>
+            <td class="num cost-c">~$4,000</td>
+            <td class="num orbis-c">$8,500</td>
+            <td class="num sc-c">$15,000</td>
+            <td class="num">$6,500 · 43%</td>
+          </tr>
+          <tr>
+            <td class="rowhead">Tracking setup <span class="faint" style="font-weight:400">(per client program, one-time)</span></td>
+            <td class="num cost-c">~$600</td>
+            <td class="num orbis-c">$1,500</td>
+            <td class="num sc-c">$3,000</td>
+            <td class="num">$1,500 · 50%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">Margins shown are SafetyCheck's gross on the customer price. Orbis's margin over its own cost is roughly $2,000 (AI) / $4,500 (Filmed) per video. All figures USD, per training.</p>
+
+    <div class="grid g2" style="margin-top:26px">
+      <div>
+        <h3 style="font-size:17px;margin:0 0 12px">Where the AI Studio price comes from</h3>
+        <div class="tblwrap">
+          <table style="min-width:0">
+            <tbody>
+              <tr><td>Scriptwriting (safety, ~1,300 words)</td><td class="num">$150–$800</td></tr>
+              <tr><td>AI voiceover (ElevenLabs, allocated)</td><td class="num">$2–$22</td></tr>
+              <tr><td>AI image generation (labor + tools)</td><td class="num">$150–$500</td></tr>
+              <tr><td>Assembly &amp; captioning (Descript)</td><td class="num">$400–$1,200</td></tr>
+              <tr><td>Interactive page + chapters + quizzes</td><td class="num">$600–$1,000</td></tr>
+              <tr class="totrow"><td>Blended production cost</td><td class="num">~$1,800</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:17px;margin:0 0 12px">Where the Filmed price comes from</h3>
+        <div class="tblwrap">
+          <table style="min-width:0">
+            <tbody>
+              <tr><td>Shoot day (mobile-journalism, 1 location)</td><td class="num">$650–$1,500</td></tr>
+              <tr><td>Editing (9 min, interviews + b-roll)</td><td class="num">$900–$2,500</td></tr>
+              <tr><td>Scripting / interview prep</td><td class="num">$300–$800</td></tr>
+              <tr><td>Interactive page + chapters + quizzes</td><td class="num">$600–$1,000</td></tr>
+              <tr><td>Travel / contingency</td><td class="num">$150–$500</td></tr>
+              <tr class="totrow"><td>Blended production cost</td><td class="num">~$4,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v8m-4-4h8"/><circle cx="12" cy="12" r="9"/></svg>
+      <p><b>Reseller math, sanity-checked:</b> a consultancy reselling a subcontractor's production typically marks up pass-through work 15–40%, or up to a 40–60% <em>markup</em> when white-labeling it as their own product. The AI Studio model above is a ~97% markup ($3,800 → $7,500) — aggressive on paper, but it holds because the customer isn't comparing to Orbis's invoice; they're comparing to a $9,000–$31,000 agency quote for a custom 9-minute safety course. Remember the trap: a 50% markup is only a 33% margin — the table prices to <em>margin</em>, not markup.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECURRING -->
+<section id="recurring">
+  <div class="wrap">
+    <p class="s-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>The part that compounds</p>
+    <h2>Recurring revenue: per-seat tracked access + annual refresh.</h2>
+    <p class="sub">The one-time video pays for the build. The recurring layer is what turns this into a business. Because the tracking system already logs each named learner, SafetyCheck can charge <em>per employee, per year</em> for access to the tracked training — and it's dramatically cheaper for the client than fragmented off-the-shelf courses, so it's easy to say yes to.</p>
+
+    <div class="grid g3" style="margin-bottom:22px">
+      <div class="card">
+        <p class="s-label" style="color:var(--sc)">Per-seat access</p>
+        <div class="stat"><span class="v">$15–$30</span><span class="l">per employee / year — SafetyCheck → customer for tracked access</span></div>
+        <p class="muted" style="font-size:13px;margin:12px 0 0">Anchored well below off-the-shelf OSHA courses ($50–$150 each) and fragmented per-topic vendors ($80–$120/employee). Easy value story.</p>
+      </div>
+      <div class="card">
+        <p class="s-label" style="color:var(--orbis)">Platform fee</p>
+        <div class="stat"><span class="v">$3–$6</span><span class="l">per seat / year — Orbis → SafetyCheck to run hosting + tracking</span></div>
+        <p class="muted" style="font-size:13px;margin:12px 0 0">Or a flat ~$500–$1,000/yr per client program. Covers the database, hosting, and light maintenance. Leaves SafetyCheck the majority of the per-seat revenue.</p>
+      </div>
+      <div class="card">
+        <p class="s-label" style="color:var(--gold)">Annual refresh</p>
+        <div class="stat"><span class="v">15–20%</span><span class="l">of production cost / year — content updates when rules or policies change</span></div>
+        <p class="muted" style="font-size:13px;margin:12px 0 0">Billed on material change (a new chapter, a regulation update) rather than continuously. Industry norm is 15–25%.</p>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+      <p><b>Illustrative:</b> a 150-employee client on tracked access at $22/seat/yr = <b>$3,300/yr</b> to SafetyCheck, of which a ~$4–5/seat platform fee (~$700/yr) goes to Orbis — recurring, on top of the one-time build. Across a dozen SafetyCheck clients, that per-seat layer quickly outweighs the production fees. <em>These are planning numbers to react to, not a quote.</em></p>
+  </div>
+  </div>
+</section>
+
+<!-- MARTAM EXAMPLE -->
+<section id="example">
+  <div class="wrap">
+    <p class="s-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Worked example</p>
+    <h2>Martam General Safety Orientation — priced through the model.</h2>
+    <p class="sub">The pilot already built and in review. Here's what it maps to if we run it through the pricing above as an AI Studio video with tracking added.</p>
+
+    <div class="tblwrap">
+      <table>
+        <thead>
+          <tr><th>Component</th><th class="num">Orbis → SafetyCheck</th><th class="num">SafetyCheck → Martam</th><th>Basis</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="rowhead">AI Studio video (12 chapters, ~9 min)</td><td class="num orbis-c">$3,800</td><td class="num sc-c">$7,500</td><td class="faint">One-time build</td></tr>
+          <tr><td class="rowhead">Scoring &amp; completion tracking setup</td><td class="num orbis-c">$1,500</td><td class="num sc-c">$3,000</td><td class="faint">One-time, per program</td></tr>
+          <tr><td class="rowhead">Tracked per-seat access</td><td class="num orbis-c">~$4–6/seat/yr</td><td class="num sc-c">$22/seat/yr</td><td class="faint">Recurring</td></tr>
+          <tr class="totrow"><td>One-time total</td><td class="num orbis-c">$5,300</td><td class="num sc-c">$10,500</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">If Martam runs ~150 field employees through it annually, add ~$3,300/yr recurring (SafetyCheck) with ~$700/yr to Orbis. A filmed "Underground Crews" or "Road-Building Crews" follow-up (both already flagged as likely next videos) would price at the Format 2 line.</p>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="wrap">
+    <p class="s-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg>Packaging &amp; incentives</p>
+    <h2>Ways to package it for SafetyCheck's clients.</h2>
+    <div class="grid g3">
+      <div class="card">
+        <h4 style="margin:0 0 6px">Single course</h4>
+        <p class="muted" style="font-size:14px;margin:0">One video + tracking. The entry point — exactly the Martam pilot. Best for a first "yes."</p>
+      </div>
+      <div class="card">
+        <h4 style="margin:0 0 6px">Course library (volume)</h4>
+        <p class="muted" style="font-size:14px;margin:0">A series of 4–8 videos for one client (e.g., Martam's crew-specific trainings). Offer ~15–20% off per video at 4+; production efficiencies grow with each one.</p>
+      </div>
+      <div class="card">
+        <h4 style="margin:0 0 6px">Program retainer</h4>
+        <p class="muted" style="font-size:14px;margin:0">A monthly/annual retainer where SafetyCheck bundles hosting, tracking, and a set number of refreshes/new modules per year. Smooths revenue for both sides.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENCHMARKS -->
+<section id="benchmarks">
+  <div class="wrap">
+    <p class="s-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M9 15l3-4 3 2 4-6"/></svg>Market benchmarks behind the numbers</p>
+    <h2>The baseline — what the market actually charges (2025–2026).</h2>
+    <p class="sub">So the pricing above isn't guesswork. These are the anchors from industry rate guides and published rate cards. Expand each for detail and sources.</p>
+
+    <details open>
+      <summary>Training / explainer video — per finished minute &amp; per project</summary>
+      <ul>
+        <li><b>Per finished minute:</b> low/AI-assisted $500–$1,500; mid-tier custom $1,500–$5,000; premium/heavy animation $5,000–$15,000+.</li>
+        <li><b>Training video specifically:</b> ~$1,000–$3,500/min typical → a 9-min course cross-checks to <b>$9,000–$31,500</b> at agency per-minute rates.</li>
+        <li><b>Per project:</b> low/AI $1,000–$5,000; mid-tier short video $3,000–$10,000; enterprise multi-module $25,000–$150,000+.</li>
+        <li><b>Custom safety video (project):</b> ~$1,500–$6,000 for 2–3 min; VR safety $5,000–$12,000.</li>
+      </ul>
+      <p class="src">Sources: Advids, Vidico, Synthesia, Blue Carrot, DMAK Productions, Colossyan, Connective Web Design.</p>
+    </details>
+
+    <details>
+      <summary>Voiceover — human vs. AI (the savings story)</summary>
+      <ul>
+        <li><b>Human eLearning VO:</b> $30–$55/finished min, $0.20–$0.35/word, $350–$450 project minimum → <b>~$270–$700</b> for a 9-min script.</li>
+        <li><b>Human corporate narration (GVAA, 5–10 min tier):</b> ~$600–$700.</li>
+        <li><b>AI VO (ElevenLabs):</b> ~$2–$22 for the same 9 minutes (fraction of a $22/mo plan).</li>
+        <li><b>Net:</b> AI VO is <b>~95–99% cheaper</b> per video. (Confirm commercial-use rights at your plan tier.)</li>
+      </ul>
+      <p class="src">Sources: GVAA Rate Guide / Voice Crafters, Voices.com, The Voice Realm, ElevenLabs pricing.</p>
+    </details>
+
+    <details>
+      <summary>Interactive eLearning — development effort &amp; cost per hour</summary>
+      <ul>
+        <li><b>Chapman Alliance</b> "hours to build one finished hour": Level 1 basic ~87 hrs; Level 2 interactive ~197 hrs; Level 3 advanced ~466 hrs.</li>
+        <li><b>Cost per finished hour:</b> Chapman Level 1 ~$10,054; 2025 market avg ~$20,050 (range $6,740–$33,360).</li>
+        <li>Your video + chapters + quizzes sits at the <b>Level 1.5–2 boundary</b> — the interactivity is what justifies pricing above a flat explainer video.</li>
+      </ul>
+      <p class="src">Sources: Chapman Alliance, Kapp &amp; Defelice, Leading Learning, Blue Carrot, AllenComm.</p>
+    </details>
+
+    <details>
+      <summary>Filming — day rates &amp; mobile-journalism vs. full crew</summary>
+      <ul>
+        <li><b>Solo videographer (published rate cards):</b> half-day $350–$900; full day $650–$1,500 (e.g., DTX Media Dallas: $900 / $1,500).</li>
+        <li><b>Editing:</b> $60–$150/hr; a 9-min multi-interview edit ≈ 15–35 hrs → ~$900–$5,000.</li>
+        <li><b>Mojo kit</b> (phone, mics, gimbal) under $1,500 vs. broadcast ENG rigs $20,000–$50,000.</li>
+        <li><b>Filmed vs. AI:</b> AI is far cheaper per minute, but for <em>your</em> model the realistic delta is ~3–8× on the production line (your AI version still carries labor).</li>
+      </ul>
+      <p class="src">Sources: Synthesia, Vidico, DTX Media, andrewproductions rate card, Ruah Creative House, c-istudios, Journalism University.</p>
+    </details>
+
+    <details>
+      <summary>Hosting, tracking &amp; per-seat safety pricing</summary>
+      <ul>
+        <li><b>SCORM Cloud</b> (single course, by registrations): $40–$360/mo. <b>Small-business LMS:</b> iSpring $2.99/user/mo; TalentLMS $149/mo up to 40 users (certificates + completion stats included).</li>
+        <li><b>Onboarding/setup</b> for SMB LMS packages: $3,000–$5,000 (we undercut this — the system is already built).</li>
+        <li><b>Off-the-shelf safety courses (per learner):</b> OSHA-10 $50–$150; OSHA-30 $150–$300. Enterprise unlimited access under $35/employee/yr — the anchor our $15–$30/seat sits below.</li>
+      </ul>
+      <p class="src">Sources: Rustici/SCORM Cloud, TalentLMS, iSpring, OSHA.com, 360training, occupros.</p>
+    </details>
+
+    <details>
+      <summary>Reseller margins &amp; ongoing maintenance</summary>
+      <ul>
+        <li><b>Pass-through / subcontractor markup:</b> 15–30% (labor +15–20%). <b>White-label sweet spot:</b> 40–60% markup; agencies target 60–70% margin.</li>
+        <li><b>Markup ≠ margin:</b> a 50% markup is a 33% margin. Price to margin.</li>
+        <li><b>Annual maintenance:</b> 15–25% of original development cost per year — the industry standard for keeping content current.</li>
+      </ul>
+      <p class="src">Sources: Parakeeto, The White Label Agency, Feedbird, DashClicks, Blue Carrot, TTMS.</p>
+    </details>
+  </div>
+</section>
+
+<!-- PARTNERSHIP -->
+<section id="partnership">
+  <div class="wrap">
+    <p class="s-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>How we partner</p>
+    <h2>Clear lanes, shared upside.</h2>
+
+    <div class="rolegrid" style="margin-bottom:24px">
+      <div class="rolecol">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="var(--sc)" stroke-width="2" style="width:18px;height:18px"><path d="M12 2 4 5v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V5z"/></svg>SafetyCheck Inc.</h4>
+        <p class="tagm">Owns the customer &amp; the expertise</p>
+        <ul class="clean">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--sc)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Client relationships, sales &amp; the trusted safety brand</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--sc)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Subject-matter expertise &amp; content accuracy / sign-off</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--sc)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Hosting the trainings &amp; owning the completion records</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--sc)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Retail pricing &amp; the customer invoice</li>
+        </ul>
+      </div>
+      <div class="rolecol">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="var(--orbis)" stroke-width="2" style="width:18px;height:18px"><path d="m10 9 5 3-5 3z" fill="var(--orbis)" stroke="none"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>Orbis Design</h4>
+        <p class="tagm">Owns the production engine</p>
+        <ul class="clean">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--orbis)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Scriptcraft, AI voiceover &amp; imagery, or on-site filming</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--orbis)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>The interactive training page, chapters &amp; quizzes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--orbis)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>The scoring / tracking system &amp; SafetyCheck's dashboard</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="var(--orbis)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Hosting infrastructure &amp; ongoing technical maintenance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0 0 12px">Proposed next steps</h3>
+      <ul class="clean">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Land Martam's first-round feedback on the pilot, then finalize it as the reference course.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Agree the two headline numbers together: <b>Orbis → SafetyCheck</b> per format, and SafetyCheck's <b>retail</b> per format.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Decide the recurring model — per-seat vs. flat-per-client — and pilot it with Martam's headcount.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Add the tracking layer to the Martam page as the live proof-of-concept for the dashboard.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Line up the next 2–3 courses (Martam crew-specific + a second client) to prove the library model.</li>
+      </ul>
+    </div>
+
+    <div class="disc" style="margin-top:22px">
+      <b>About these numbers.</b> Every figure here is a planning model, not a quote — built from published 2025–2026 market rates and Orbis's actual production stack, and meant to be adjusted together with SafetyCheck. Production cost lines reflect blended freelance-market rates for the work involved; they are a basis for setting Orbis's price, not a timesheet. Per-seat and retainer figures should be tuned to real client headcounts and SafetyCheck's positioning. Nothing here commits either party to specific pricing until agreed.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Prepared by <b>Orbis Design</b> for discussion with <b>SafetyCheck Inc.</b> · Safety Training Video Program · Confidential partnership planning document<br>
+    Benchmarks compiled from public 2025–2026 industry rate guides &amp; published rate cards. Tip: <span class="kbd">⌘P</span> to save as PDF.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estimate — Martam General Safety Orientation | Safety Check Inc.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#1ABC9C; --teal-d:#159a80; --teal-bg:#e9f9f5;
+    --charcoal:#2b2f33; --ink:#2f3946; --body:#556070; --muted:#8791a0; --faint:#a7b0bc;
+    --line:#e6e9ed; --line2:#eef1f4; --gray:#f6f7f9;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#e9ecf0;color:var(--body);
+    font-family:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.65;font-size:15px;-webkit-font-smoothing:antialiased;padding:34px 16px;}
+  h1,h2,h3,h4,.pop{font-family:'Poppins',sans-serif;color:var(--ink);}
+  .sheet{max-width:860px;margin:0 auto;background:#fff;border-radius:6px;box-shadow:0 8px 40px rgba(30,40,55,.14);overflow:hidden;}
+  .topbar{height:6px;background:var(--teal);}
+  .pad{padding:42px 52px;}
+  @media(max-width:640px){.pad{padding:30px 26px;}}
+
+  /* header */
+  .doc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-bottom:26px;border-bottom:1px solid var(--line);}
+  .wordmark{display:flex;align-items:center;gap:1px;font-family:'Poppins',sans-serif;font-weight:700;font-size:22px;letter-spacing:.13em;color:var(--charcoal);text-transform:uppercase;}
+  .wordmark svg{width:21px;height:21px;color:var(--teal);margin:0 1px;transform:translateY(1px);}
+  .wordmark-sub{font-family:'Lato';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:5px;}
+  .doc-meta{text-align:right;}
+  .doc-meta .lbl{font-family:'Poppins',sans-serif;font-weight:700;font-size:26px;letter-spacing:.04em;color:var(--teal);text-transform:uppercase;margin-bottom:8px;}
+  .doc-meta table{border-collapse:collapse;margin-left:auto;font-size:13px;}
+  .doc-meta td{padding:1px 0 1px 16px;}
+  .doc-meta td.k{color:var(--muted);text-align:right;}
+  .doc-meta td.v{color:var(--ink);font-weight:700;font-family:'Poppins',sans-serif;text-align:right;}
+
+  /* parties */
+  .parties{display:grid;grid-template-columns:1fr 1fr;gap:34px;padding:26px 0;border-bottom:1px solid var(--line);}
+  @media(max-width:560px){.parties{grid-template-columns:1fr;gap:20px;}}
+  .party .h{font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:8px;}
+  .party .nm{font-family:'Poppins',sans-serif;font-weight:600;font-size:16px;color:var(--ink);}
+  .party .ln{font-size:13.5px;color:var(--body);}
+
+  /* project intro */
+  .proj{padding:26px 0 6px;}
+  .proj h1{font-size:23px;font-weight:600;margin:0 0 8px;}
+  .proj p{margin:0;font-size:15px;color:var(--body);max-width:64ch;}
+
+  /* tables */
+  .sec-h{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:30px 0 12px;}
+  table.items{width:100%;border-collapse:collapse;font-size:14px;}
+  table.items thead th{background:var(--charcoal);color:#fff;font-family:'Poppins',sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;text-align:left;padding:11px 14px;}
+  table.items thead th.num{text-align:right;}
+  table.items td{padding:14px;border-bottom:1px solid var(--line2);vertical-align:top;}
+  table.items td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  table.items .it{font-weight:700;color:var(--ink);font-family:'Poppins',sans-serif;font-size:14px;}
+  table.items .desc{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.5;}
+  table.items tr.sub td{border-top:2px solid var(--line);border-bottom:none;font-family:'Poppins',sans-serif;font-weight:700;color:var(--ink);padding-top:13px;}
+  .recur-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--teal-bg);color:var(--teal-d);padding:2px 8px;border-radius:20px;margin-left:8px;vertical-align:middle;}
+
+  /* totals */
+  .totals{display:flex;justify-content:flex-end;margin-top:20px;}
+  .totbox{width:340px;max-width:100%;border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .totbox .r{display:flex;justify-content:space-between;padding:12px 18px;font-size:14px;border-bottom:1px solid var(--line2);}
+  .totbox .r .k{color:var(--body);} .totbox .r .v{font-family:'Poppins',sans-serif;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+  .totbox .r.grand{background:var(--teal);border-bottom:none;}
+  .totbox .r.grand .k,.totbox .r.grand .v{color:#fff;font-size:16px;font-family:'Poppins',sans-serif;font-weight:700;}
+  .totbox .r.recur{background:var(--teal-bg);border-bottom:none;}
+  .totbox .r.recur .k,.totbox .r.recur .v{color:var(--teal-d);}
+
+  /* two-col blocks */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:8px;}
+  @media(max-width:640px){.cols{grid-template-columns:1fr;gap:20px;}}
+  ul.clean{list-style:none;padding:0;margin:8px 0 0;}
+  ul.clean li{position:relative;padding:6px 0 6px 25px;font-size:13.5px;border-bottom:1px solid var(--line2);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li svg{position:absolute;left:0;top:9px;width:15px;height:15px;color:var(--teal);}
+
+  /* timeline */
+  .timeline{margin-top:10px;}
+  .tl{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--line2);}
+  .tl:last-child{border-bottom:none;}
+  .tl .wk{flex:0 0 92px;font-family:'Poppins',sans-serif;font-weight:700;font-size:12px;color:var(--teal-d);text-transform:uppercase;letter-spacing:.04em;padding-top:1px;}
+  .tl .d{font-size:13.5px;color:var(--body);}
+  .tl .d b{color:var(--ink);font-family:'Poppins',sans-serif;font-weight:600;}
+
+  .note{background:var(--gray);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--body);margin-top:14px;}
+  .note b{color:var(--ink);}
+
+  .terms{font-size:12.5px;color:var(--muted);margin-top:8px;}
+  .terms li{margin-bottom:5px;}
+
+  /* signatures */
+  .sign{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:14px;padding-top:26px;border-top:1px solid var(--line);}
+  @media(max-width:560px){.sign{grid-template-columns:1fr;gap:32px;}}
+  .sign .h{font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px;}
+  .sig-img{height:52px;width:auto;max-width:240px;display:block;margin:6px 0 2px -4px;}
+  .sig-line{border-bottom:1.5px solid var(--ink);height:46px;margin-bottom:6px;}
+  .sign .nm{font-family:'Poppins',sans-serif;font-weight:600;color:var(--ink);font-size:14.5px;}
+  .sign .rl{font-size:12.5px;color:var(--muted);}
+  .sign .df{display:flex;gap:10px;font-size:12.5px;color:var(--muted);margin-top:8px;}
+
+  /* footer */
+  .docfoot{background:var(--charcoal);color:#aeb6bf;padding:22px 52px;font-size:12.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;}
+  @media(max-width:640px){.docfoot{padding:20px 26px;}}
+  .docfoot .wm{display:flex;align-items:center;gap:1px;font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;letter-spacing:.12em;color:#fff;text-transform:uppercase;}
+  .docfoot .wm svg{width:14px;height:14px;color:var(--teal);}
+  .docfoot a{color:#aeb6bf;text-decoration:none;}
+
+  .print-hint{max-width:860px;margin:0 auto 14px;text-align:right;font-size:12px;color:#6b7480;}
+  .kbd{font-family:ui-monospace,Menlo,monospace;background:#dfe3e8;border-radius:4px;padding:1px 6px;font-size:11px;}
+  @media print{
+    body{background:#fff;padding:0;} .sheet{box-shadow:none;max-width:100%;border-radius:0;} .print-hint{display:none;}
+    .pad{padding:26px 34px;} section,.sign{page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div class="print-hint">Tip: press <span class="kbd">⌘P</span> to save or send this estimate as a PDF.</div>
+
+<div class="sheet">
+  <div class="topbar"></div>
+  <div class="pad">
+
+    <!-- HEADER -->
+    <div class="doc-head">
+      <div>
+        <div class="wordmark">SAFET<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>CHECK</div>
+        <div class="wordmark-sub">Safety Experts · Trainings &amp; Educational Tools</div>
+      </div>
+      <div class="doc-meta">
+        <div class="lbl">Estimate</div>
+        <table>
+          <tr><td class="k">Estimate #</td><td class="v">SCI-2026-0714</td></tr>
+          <tr><td class="k">Date</td><td class="v">July 7, 2026</td></tr>
+          <tr><td class="k">Valid until</td><td class="v">August 6, 2026</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- PARTIES -->
+    <div class="parties">
+      <div class="party">
+        <div class="h">From</div>
+        <div class="nm">Safety Check Inc.</div>
+        <div class="ln">Lisa Marino · Account Coordinator</div>
+        <div class="ln">P.O. Box 350, Gilberts, IL 60136</div>
+        <div class="ln">815-475-9991 · LMarino@safetycheckinc.com</div>
+        <div class="ln">safetycheckinc.com</div>
+      </div>
+      <div class="party">
+        <div class="h">Prepared for</div>
+        <div class="nm">Tina Kutrovatz</div>
+        <div class="ln">Risk Manager · Martam Construction Inc.</div>
+        <div class="ln">Elgin, Illinois</div>
+        <div class="ln">847-608-6800 ext. 242</div>
+        <div class="ln">tina@martam.com</div>
+      </div>
+    </div>
+
+    <!-- PROJECT -->
+    <div class="proj">
+      <h1>General Safety Orientation — Interactive Video Training</h1>
+      <p>A modern, phone-first new-hire safety orientation for Martam's crews — produced and branded to Martam, delivered as an interactive training with clickable chapters, built-in knowledge checks, and completion tracking your team can stand behind.</p>
+    </div>
+
+    <!-- ONE-TIME ITEMS -->
+    <div class="sec-h">One-time — Production &amp; setup</div>
+    <table class="items">
+      <thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Unit price</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="it">General Safety Orientation — interactive video</span><div class="desc">Studio-produced, 12 chapters (~9 min), branded to Martam, captioned. Clickable chapters + knowledge checks on each topic, from PPE and fall protection to "Call Before You Dig." Includes two rounds of revisions.</div></td>
+          <td class="num">1</td><td class="num">$7,500</td><td class="num">$7,500</td>
+        </tr>
+        <tr>
+          <td><span class="it">Completion tracking &amp; records setup</span><div class="desc">Named employee sign-in, automatic per-employee scoring &amp; timestamps, completion certificates, and a live admin dashboard Safety Check manages for you.</div></td>
+          <td class="num">1</td><td class="num">$3,000</td><td class="num">$3,000</td>
+        </tr>
+        <tr class="sub"><td>One-time subtotal</td><td class="num"></td><td class="num"></td><td class="num">$10,500</td></tr>
+      </tbody>
+    </table>
+
+    <!-- RECURRING -->
+    <div class="sec-h">Annual — Hosting, tracking &amp; access <span class="recur-badge">Recurring</span></div>
+    <table class="items">
+      <thead><tr><th>Item</th><th class="num">Employees</th><th class="num">Per employee / yr</th><th class="num">Annual</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="it">Tracked training access &amp; hosting</span><div class="desc">Per-employee annual access to the tracked training on Safety Check's secure portal — includes hosting, completion certificates, and dashboard reporting. Billed yearly; adjusts to your actual active headcount.</div></td>
+          <td class="num">150 <span style="color:var(--faint)">(est.)</span></td><td class="num">$22</td><td class="num">$3,300 / yr</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- TOTALS -->
+    <div class="totals">
+      <div class="totbox">
+        <div class="r"><span class="k">One-time (production &amp; setup)</span><span class="v">$10,500</span></div>
+        <div class="r recur"><span class="k">Annual access (est. 150 employees)</span><span class="v">$3,300 / yr</span></div>
+        <div class="r grand"><span class="k">First-year total</span><span class="v">$13,800</span></div>
+      </div>
+    </div>
+
+    <!-- OPTIONAL ADD-ONS -->
+    <div class="sec-h">Optional — Additional trainings (future)</div>
+    <table class="items">
+      <thead><tr><th>Item</th><th class="num">Unit price</th></tr></thead>
+      <tbody>
+        <tr><td><span class="it">Crew-specific training — on-site filmed</span><div class="desc">e.g. Underground Crews, Road-Building Crews. Your real crews &amp; supervisors filmed on location, built into the same tracked training page.</div></td><td class="num">$15,000 / video</td></tr>
+        <tr><td><span class="it">Additional studio-produced training</span><div class="desc">Additional topic in the studio format (AI-assisted production).</div></td><td class="num">$7,500 / video</td></tr>
+      </tbody>
+    </table>
+    <div class="note"><b>Library incentive:</b> build a set of crew-specific trainings and we'll apply a <b>15–20% discount</b> per video at four or more. Annual access covers the entire training library at the same per-employee rate.</div>
+
+    <!-- DELIVERY + INCLUDED -->
+    <div class="cols">
+      <div>
+        <div class="sec-h" style="margin-top:34px">Delivery schedule</div>
+        <div class="timeline">
+          <div class="tl"><div class="wk">Week 1</div><div class="d"><b>Script &amp; sign-off</b> — finalize the script from Martam's safety materials.</div></div>
+          <div class="tl"><div class="wk">Weeks 2–3</div><div class="d"><b>Production</b> — narration, branded visuals &amp; interactive page assembled.</div></div>
+          <div class="tl"><div class="wk">Week 3</div><div class="d"><b>Review copy</b> — delivered to Martam on the page, exactly as crews will see it.</div></div>
+          <div class="tl"><div class="wk">Week 4</div><div class="d"><b>Go-live</b> — revisions applied, training deployed &amp; tracking dashboard activated.</div></div>
+        </div>
+        <div class="note"><b>Ahead of schedule:</b> the Martam pilot is already produced and in review — first delivery is underway.</div>
+      </div>
+      <div>
+        <div class="sec-h" style="margin-top:34px">What's included</div>
+        <ul class="clean">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Script development, reviewed by Safety Check experts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Professional narration &amp; Martam-branded visuals</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Interactive page: video + chapters + knowledge checks</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Two rounds of revisions</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Secure, password-protected hosting</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Completion tracking, certificates &amp; admin dashboard</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TERMS -->
+    <div class="sec-h" style="margin-top:34px">Terms</div>
+    <ul class="terms">
+      <li>This estimate is valid for 30 days from the date above.</li>
+      <li>50% deposit to begin production; balance due at go-live.</li>
+      <li>Annual tracked-access fee is billed yearly in advance and adjusts to actual active headcount.</li>
+      <li>Prices are in USD. Additional videos or major content revisions (e.g. regulatory changes) are quoted separately.</li>
+    </ul>
+
+    <!-- SIGNATURES -->
+    <div class="sign">
+      <div>
+        <div class="h">Prepared by</div>
+        <img class="sig-img" src="assets/sig-Lisa-Marino-green.svg" alt="Lisa Marino signature">
+        <div class="nm">Lisa Marino</div>
+        <div class="rl">Account Coordinator · Safety Check Inc.</div>
+        <div class="df"><span>Date:</span><span>July 7, 2026</span></div>
+      </div>
+      <div>
+        <div class="h">Accepted by</div>
+        <div class="sig-line"></div>
+        <div class="nm">Tina Kutrovatz</div>
+        <div class="rl">Martam Construction Inc.</div>
+        <div class="df"><span>Date:</span><span>________________</span><span style="margin-left:12px">PO #:</span><span>____________</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="docfoot">
+    <span>Thank you for the opportunity to keep Martam's crews safe.</span>
+    <span class="wm">SAFET<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>CHECK</span>
+  </div>
+</div>
+
+</body>
+</html>
